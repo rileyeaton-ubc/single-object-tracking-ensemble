@@ -6,7 +6,7 @@
 
 - We will firstly work towards the literature review from part 1 of the project
 - We have 4 weeks of work until this is due
-- For next week, each team member must:
+- **For next week**, each team member must:
   - Read 2 or more recent research paper on Single object tracking task, at least on of which should be using traditional computer vision method (that means it is not using deep leaning approach)
   - Prepare a quick report or summary of the research to discuss in next meeting
   - Learn about pytorch if they do not have previous background knowledge

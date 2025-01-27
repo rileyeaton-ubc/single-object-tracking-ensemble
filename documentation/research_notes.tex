@@ -17,12 +17,12 @@
 \item Riley Eaton
   \begin{enumerate}[label*=\arabic*.]
   \item \textit{\href{https://typeset.io/papers/visual-object-tracking-using-adaptive-correlation-filters-1xuhtpe358}{Visual Object Tracking using Adaptive Correlation Filters}}
-  \item \textit{\href{https://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf}{Online Object Tracking\: A Benchmark}}
+  \item \textit{\href{https://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf}{Online Object Tracking: A Benchmark}}
   \end{enumerate}
 \item Wanju Luo
   \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{https://www.sciencedirect.com/science/article/pii/B9780323857871000166?via%3Dihub}{Object detection and tracking}}
-  \item \textit{\href{https://link.springer.com/article/10.1007/s40747-020-00161-4}{Overview and methods of correlation filter algorithms in object tracking}}
+  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
+  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
   \end{enumerate}
 \item Dichen Feng
   \begin{enumerate}[label*=\arabic*.]
@@ -31,9 +31,8 @@
   \end{enumerate}
 \item Henry Pak
   \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{https://www.sciencedirect.com/science/article/pii/S0925231221007220}{Recent advances of single-object tracking methods\: A brief survey}}
-  \item \textit{\href{https://arxiv.org/abs/2201.13066}{Single Object Tracking\: A Survey of Methods, Datasets, and Evaluation Metrics}}
-  \item \textit{\href{https://ieeexplore.ieee.org/document/9774086}{Residual Network based Single Object Tracking}}
+  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
+  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
   \end{enumerate}
 \item Santam
   \begin{enumerate}[label*=\arabic*.]
@@ -53,7 +52,7 @@ The following are summaries of the papers selected by each group member.
 
 \vspace{0.3cm}
 
-\textbf{Summary:} In the last decade, there have been many advances in computationally efficient SOT (Single Object Tracking) techniques, with emerging strategies becoming increasingly effective for various image features. However, classical correlation filter-based trackers often have issues when encountering abrupt lighting changes, fast motions, partial occlusions, or background clutter. To address these challenges, the authors propose techniques to improve the robustness of correlation filter-based trackers. The proposed methods include dynamic model updates, feature fusion and weighted correlation, scale estimators, multi-scale correlation search regions. They call the resultant filters \emph{Adaptive Correlation Filters}. One of said filters the authors introduce by name is \emph{MOSSE} which can produce stable correlation filters when operating at 669 FPS, while only needing a single frame for initialization. The authors demonstrate the effectiveness of these techniques by comparing their performance to other state-of-the-art trackers on a variety of benchmark datasets. The results show that the proposed methods outperform other trackers in terms of accuracy and robustness.
+\textbf{Summary:} 
 
 \vspace{0.3cm}
 
@@ -62,8 +61,7 @@ The following are summaries of the papers selected by each group member.
   \item \textbf{Template matching} is one of the simplest object tracking approaches. A single patch of an image, called a \emph{template}, is chosen. Then, in each new frame the template is slid across the entire image and a similarity measure is computer at each location. Whatever position has the highest similarity score is the new estimated position of the object. 
   \item \textbf{Convolution} involves flipping the kernel (or filter) and sliding it across the image. The dot product of the kernel and the image is computed at each location. This is similar to the similarity measure in template matching.
   \item \textbf{Correlation} by contrast does not flip the filter, and is usually used to measure similarity between images or image patches. This can be used to find how closely a test patch in a new frame matches a template patch from a previous frame.
-  \item \textbf{Frequency Domain Computations} are used to speed up the computation of the correlation between the filter and the image. A Fast Fourier Transform (FFT) is used to convert the image and filter into the frequency domain, where some computation is performed. The inverse FFT (iFFT) is then used to convert the result back to the spatial domain. This is computationally more efficient than the spatial domain computation, and speeds up matching for high frame rate applications.
-  \item \item \textbf{MOSSE} stands for the Minimum Output Sum of Squared Error. It's a method for training a filter to track an object. The filter is trained on a single frame, and then used to track the object in subsequent frames. The filter is updated at each frame to account for changes in the object's appearance. It's trained by computing the FFT of the image and the FFT of the desired output, and then dividing the two to get the filter. The filter is then updated at each frame by computing the FFT of the image, multiplying it by the filter, and then computing the iFFT to get the output. The filter is then updated by comparing the output to the desired output, and adjusting the filter to minimize the error. And as noted in the paper, "despite the simplicity of the approach, tracking based on [modifications of this filter] perform well under changes in rotation, scale, lighting, and partial occlusion."
+  \item \textbf{Frequency Domain Computations} are used to speed up the computation of the correlation between the filter and the image. A Fast Fourier Transform (FFT) is used to convert the image and filter into the frequency domain, where the dot product is computed. The inverse FFT (iFFT) is then used to convert the result back to the spatial domain. This is computationally more efficient than the spatial domain computation, and speeds up matching for high frame rate applications.
 \end{itemize}
 
 \vspace{0.3cm}
@@ -177,60 +175,35 @@ The following are summaries of the papers selected by each group member.
 \end{itemize}
 
 % -------------------------- HENRY PAK PAPER 1 --------------------------
-\subsection*{4.1 \textit{Recent advances of single-object tracking methods: A brief survey}}
+\subsection*{4.1 \textit{Paper Name}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Henry Pak
 
 \vspace{0.3cm}
 
-\textbf{Summary:} Published in 2021, this paper is a survey providing an overview of the advancements in single-object tracking methods. It focuses on the past decade's progress, especially in algorithms based on \textbf{correlation filters} and \textbf{deep learning}, which have significantly improved the performance of object trackers.
+\textbf{Summary:}
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Categorization of Methods:} It categorizes single-object tracking algorithms into correlation filters-based and deep learning-based methods, also discussing earlier methods such as optical flow, filter methods, and kernel-based methods.
-  \item \textbf{Performance Comparison:} It compares the performance of algorithms on OTB2015, VOT2016, and LaSOT datasets based on speed, accuracy, and robustness.
-  \item \textbf{Classification of Deep Learning Methods:} It classifies deep learning methods into those based on feature extraction and those that are end-to-end methods.
+  \item \textbf{Point} Description
 \end{itemize}
 
 % -------------------------- HENRY PAK PAPER 2 --------------------------
-\subsection*{4.2 \textit{Single Object Tracking: A Survey of Methods, Datasets, and Evaluation Metrics}}
+\subsection*{4.2 \textit{Paper Name}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Henry Pak
 
 \vspace{0.3cm}
 
-\textbf{Summary:} Published in 2021, this survey paper offers a comprehensive overview of single-object tracking methodologies, common datasets, and performance evaluation metrics. It categorizes tracking approaches and discusses learning-based techniques.
+\textbf{Summary:}
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Classification of Methods:} It classifies object tracking methods into four main categories: "feature-based", "segmentation-based", "estimation-based", and "learning-based methods".
-  \item \textbf{Focus on Learning-Based Methods:} It focuses on learning-based methods, which are further divided into generative, discriminative, and reinforcement learning approaches. It also notes that deep learning is a sub-category of discriminative learning.
-  \item \textbf{Feature-Based Methods:} It discusses feature-based methods, like those using color, texture, and optical flow.
-  \item \textbf{Review of Datasets:} It reviews various datasets, including OTB100, OTB50, VOT (various years), ALOV300++, TempleColor128, NUS-PRO, DTB70, Nfs, UAV123, GOT-10k, LaSOT, OxUvA, TrackingNet, and YouTube-BoundingBoxes.
-  \item \textbf{Evaluation Metrics:} It explains common evaluation metrics like center error and region overlap.
-  \item \textbf{Challenges in Object Tracking:} It discusses the various challenges in object tracking such as illumination variations, background clutter, occlusion, and deformation.
-\end{itemize}
-% -------------------------- HENRY PAK PAPER 3 --------------------------
-\subsection*{4.3 \textit{Residual Network based Single Object Tracking}}
-
-\hspace*{\parindent}\textbf{Reviewer:} Henry Pak
-
-\vspace{0.3cm}
-
-\textbf{Summary:} Published in 2022, this paper introduces a new approach to single-object tracking using a Residual Network (RESNET-101) architecture combined with a Region Based Convolutional Neural Network (RCNN) object detector. The method, called R-SOT, is designed to predict bounding boxes around a target object in video frames using supervised learning.
-
-\vspace{0.3cm}
-
-\textbf{Key Points \& Concepts:}
-\begin{itemize}
-  \item \textbf{R-SOT Tracker:} The proposed R-SOT tracker uses RESNET-101 for value prediction and training.
-  \item \textbf{RCNN Object Detector:} It employs an RCNN object detector for identifying bounding boxes.
-  \item \textbf{Performance Evaluation:} The tracker's performance is evaluated on the \textbf{Online Object Tracking Benchmark (OTB) dataset}.
-  \item \textbf{Bounding Box Prediction:} The bounding box prediction relies on the sequence of frames used.
+  \item \textbf{Point} Description
 \end{itemize}
 
 % -------------------------- SANTAM PAPER 1 --------------------------

@@ -6,15 +6,19 @@
 
 - We will firstly work towards the literature review from part 1 of the project
 - We have 4 weeks of work until this is due
-- **For next week**, each team member must:
-  - Read 2 or more recent research paper on Single object tracking task, at least one of which should be using traditional computer vision methods (that means it is not using deep leaning approach)
-  - Prepare a quick report or summary of the research to discuss in next meeting
-    - Each team member should have a good understanding of the foundations of their papers, so that we can share with each other to get a better understanding of single object tracking techniques
-  - Learn about pytorch if they do not have previous background knowledge
-- **In next week's meeting**, we should:
-  - Share our findings
-  - Aim to hone our literature review efforts into the papers that will help us define our problem statement for part 2 of the project
-  - Put together a Kanban or progress board where we can track to-dos. This will help with the development in the repo for part 2
+
+#### For next week, each team member must:
+
+- Read 2 or more recent research paper on Single object tracking task, at least one of which should be using traditional computer vision methods (that means it is not using deep leaning approach)
+- Prepare a quick report or summary of the research to discuss in next meeting
+  - Each team member should have a good understanding of the foundations of their papers, so that we can share with each other to get a better understanding of single object tracking techniques
+- Learn about pytorch if they do not have previous background knowledge
+
+#### In next week's meeting, we should:
+
+- Share our findings
+- Aim to hone our literature review efforts into the papers that will help us define our problem statement for part 2 of the project
+- Put together a Kanban or progress board where we can track to-dos. This will help with the development in the repo for part 2
 
 ### Meeting 2 - January 27th
 
@@ -28,13 +32,13 @@
     - We should aim to reduce computation complexity of the model to increase efficiency so that it can be used on-device in more applications
     - We could build a pipeline to combine traditional methods (e.g. correlation filters) with these newer learning methods. Is this still considered a traditional method to prof?
 
-#### **For next week**, each team member must:
+#### For next week, each team member must:
 
 - Continue researching your paper more in depth, and bring a technical breakdown of one or two models/approaches to our meeting
   - Prioritize papers with available source code, so that we can be prepared for implementation next week
 - Describe the current issues in SOT (Single Object Tracking) that you have seen in your papers using a couple sentences
 
-#### **In next week's meeting**, we should:
+#### In next week's meeting, we should:
 
 - Create a single problem statement using each of our individual parts
 - Try to replicate at least something from one paper using cited source code based on our new technical understanding

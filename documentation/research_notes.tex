@@ -58,7 +58,10 @@ The following are summaries of the papers selected by each group member.
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Point} Description
+  \item \textbf{Template matching} is one of the simplest object tracking approaches. A single patch of an image, called a \emph{template}, is chosen. Then, in each new frame the template is slid across the entire image and a similarity measure is computer at each location. Whatever position has the highest similarity score is the new estimated position of the object. 
+  \item \textbf{Convolution} involves flipping the kernel (or filter) and sliding it across the image. The dot product of the kernel and the image is computed at each location. This is similar to the similarity measure in template matching.
+  \item \textbf{Correlation} by contrast does not flip the filter, and is usually used to measure similarity between images or image patches. This can be used to find how closely a test patch in a new frame matches a template patch from a previous frame.
+  \item \textbf{Frequency Domain Computations} are used to speed up the computation of the correlation between the filter and the image. A Fast Fourier Transform (FFT) is used to convert the image and filter into the frequency domain, where the dot product is computed. The inverse FFT (iFFT) is then used to convert the result back to the spatial domain. This is computationally more efficient than the spatial domain computation, and speeds up matching for high frame rate applications.
 \end{itemize}
 
 \vspace{0.3cm}

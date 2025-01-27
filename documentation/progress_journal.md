@@ -27,13 +27,18 @@
   - Emerging deep learning models can address these challenges and more:
     - We should aim to reduce computation complexity of the model to increase efficiency so that it can be used on-device in more applications
     - We could build a pipeline to combine traditional methods (e.g. correlation filters) with these newer learning methods. Is this still considered a traditional method to prof?
-- **For next week**, each team member must:
 
-  - Continue researching your paper more in depth, and bring a technical breakdown of the approach from _one_ paper to our meeting
-    - Prioritize papers with available source code!
-  - Describe the current issues in SOT (Single Object Tracking) in a few sentences, that they have seen in their papers
+#### **For next week**, each team member must:
 
-- **In next week's meeting**, we should:
-  - Create a single problem statement using each of our individual parts
-  - Try to replicate at least something from one paper using cited source code based on our new technical understanding
-  - Build a Kanban board AND create to-do's that will keep us on track for the literature review
+- Continue researching your paper more in depth, and bring a technical breakdown of one or two models/approaches to our meeting
+  - Prioritize papers with available source code, so that we can be prepared for implementation next week
+- Describe the current issues in SOT (Single Object Tracking) that you have seen in your papers using a couple sentences
+
+#### **In next week's meeting**, we should:
+
+- Create a single problem statement using each of our individual parts
+- Try to replicate at least something from one paper using cited source code based on our new technical understanding
+- Build a Kanban board AND create to-do's that will keep us on track for the literature review
+  - Implementation
+  - Consolidating findings
+  - Pros and Cons for each paper

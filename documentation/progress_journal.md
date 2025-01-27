@@ -15,3 +15,11 @@
   - Share our findings
   - Aim to hone our literature review efforts into the papers that will help us define our problem statement for part 2 of the project
   - Put together a Kanban or progress board where we can track to-dos. This will help with the development in the repo for part 2
+
+### Meeting 2 - January 27th
+
+- ?
+- **For next week**, each team member must:
+  - ?
+- **In next week's meeting**, we should:
+  - ?

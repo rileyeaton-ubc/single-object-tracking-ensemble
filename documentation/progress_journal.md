@@ -28,7 +28,12 @@
     - We should aim to reduce computation complexity of the model to increase efficiency so that it can be used on-device in more applications
     - We could build a pipeline to combine traditional methods (e.g. correlation filters) with these newer learning methods. Is this still considered a traditional method to prof?
 - **For next week**, each team member must:
+
+  - Continue researching your paper more in depth, and bring a technical breakdown of the approach from _one_ paper to our meeting
+    - Prioritize papers with available source code!
   - Describe the current issues in SOT (Single Object Tracking) in a few sentences, that they have seen in their papers
+
 - **In next week's meeting**, we should:
   - Create a single problem statement using each of our individual parts
+  - Try to replicate at least something from one paper using cited source code based on our new technical understanding
   - Build a Kanban board AND create to-do's that will keep us on track for the literature review

@@ -18,7 +18,15 @@
 
 ### Meeting 2 - January 27th
 
-- ?
+- Literature review is due in 3 weeks
+- Discussion on our research papers:
+  - There are many SOT techniques still being researched to address issues with variations in occlusion, lighting (poor conditions or rapid changes) scale, pose, and deformations.
+  - Many traditional correlation filters have been used to address these issues, yet they still fall short in many scenarios
+    - We should to try to borrow various different advancements that build upon this technique to build our own for a specific task
+    - Which task will we focus on?
+  - Emerging deep learning models can address these challenges and more:
+    - We should aim to reduce computation complexity of the model to increase efficiency so that it can be used on-device in more applications
+    - We could build a pipeline to combine traditional methods (e.g. correlation filters) with these newer learning methods. Is this still considered a traditional method to prof?
 - **For next week**, each team member must:
   - ?
 - **In next week's meeting**, we should:

@@ -26,8 +26,8 @@
   \end{enumerate}
 \item Dichen Feng
   \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
-  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
+  \item \textit{\href{https://jst.org.in/index.php/pub/article/view/743/669}{Moving Object Tracking and Detection in Videos using MATLAB: A Review}}
+  \item \textit{\href{https://www.semanticscholar.org/paper/Robust-visual-tracking-method-based-on-Harris-Hawks-Charef-Khodja-Abida/e945f79be12f7d64df3d5ef69256e2a0eaec1f03}{Robust visual tracking method based on Harris Hawks algorithm}}
   \end{enumerate}
 \item Henry Pak
   \begin{enumerate}[label*=\arabic*.]
@@ -115,19 +115,23 @@ The following are summaries of the papers selected by each group member.
 \end{itemize}
 
 % -------------------------- DICHEN FENG PAPER 1 --------------------------
-\subsection*{3.1 \textit{Paper Name}}
+\subsection*{3.1 \textit{Moving Object Tracking and Detection in Videos using MATLAB: A Review}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Dichen Feng
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
+\textbf{Summary:} This paper implemented a single object tracking system using MATLAB which focusing on handling the poor linght conditions and occlusions.
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Point} Description
+  \item \textbf{Color Recognition:} Use RGB and HSV color space to process video frames. HSV model is very effective on handling linghting variations.
+  \item \textbf{Noise Reducition:} Uses a median filter t remove noise from images.
+  \item \textbf{Appoxiimate Median Filter:} Extract moving object from video.
+  \item \textbf{Kalman Filter:} Predicts and refines the position of the moving object in frmaes.
+  \item \textbf{Dynamic Template Matching:} Adjust the object template if its shape changes during tracking.
 \end{itemize}
 
 % -------------------------- DICHEN FENG PAPER 2 --------------------------
@@ -137,13 +141,37 @@ The following are summaries of the papers selected by each group member.
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
+\textbf{Summary:} The Harris Hawks Optimization (HHO) algorithm is a nature-inspired metaheuristic that mimics the cooperative hunting strategy of Harris hawks to solve optimization problems by dynamically switching between exploration and exploitation phases.
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Point} Description
+  \item \textbf{Harris Hawks Optimization (HHO):} Inspired by the cooperative hunting strategies of Harris hawks.
+    \begin{itemize}
+      \item \textbf{Exploration Phase:} Hawks search randomly for the target.
+      \item \textbf{Transition Phase:} Adjusts strategy based on the target's energy and location.
+      \item \textbf{Exploitation Phase:} Hawks converge on the prey's position through coordinated movements.
+    \end{itemize}
+  \item \textbf{Object Representation:} Uses color-weighted histogram in the HSV color space to describe the object's appearance. Also uses the Bhattacharyya distance for matching the object between frames.
+  \item \textbf{Tracking Process:} Target initialized in the first frame using a bounding box. Then the color-weighted histogram of the object is computed as a feature descriptor in the HSV color space to make the algorithm less sensitive to lighting changes. 
+  \item \textbf{Pseudo Code:}
+    \begin{itemize}
+      \item 1. Initialize the position of \(N\) Hawks. 
+      \item 2. While \(i < \text{IterMax}\), do:
+      \item 3. Evaluate fitness values of \(N\) Hawks.
+      \item 4. Set \(P_{\text{rabbit}}\) as the best position of the rabbit from the best fitness value.  
+      \item 5. For \(j = 1\) to \(N\), do: 
+      \item 6. Update \(E\), \(E_0\), and \(J\) using Eq. (2).  
+      \item 7. Update \(E\) using Eq. (3).  
+      \item 8. If \(|E| \geq 1\), update Hawks position using Eq. (1). 
+      \item 9. If \(|E| < 1\), then:  
+      \item 10. If \(|E| \geq 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (3). 
+      \item 11. Else if \(|E| < 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (5).  
+      \item 12. Else if \(|E| \geq 0.5\) and \(r < 0.5\), update Hawks position using Eq. (8).  
+      \item 13. Else if \(|E| < 0.5\) and \(r < 0.5\), update Hawks position using Eq. (9).  
+      \item 14. Return \(P_{\text{rabbit}}\).  
+    \end{itemize}
 \end{itemize}
 
 % -------------------------- HENRY PAK PAPER 1 --------------------------

@@ -31,9 +31,9 @@
   \end{enumerate}
 \item Henry Pak
   \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{https://www.sciencedirect.com/science/article/pii/S0925231221007220}{Paper \#1 Recent advances of single-object tracking methods: A brief survey}}
-  \item \textit{\href{https://arxiv.org/abs/2201.13066}{Paper \#2 Single Object Tracking: A Survey of Methods, Datasets, and Evaluation Metrics}}
-  \item \textit{\href{https://ieeexplore.ieee.org/document/9774086}{Paper \#3 Residual Network based Single Object Tracking}}
+  \item \textit{\href{https://www.sciencedirect.com/science/article/pii/S0925231221007220}{Recent advances of single-object tracking methods: A brief survey}}
+  \item \textit{\href{https://arxiv.org/abs/2201.13066}{Single Object Tracking: A Survey of Methods, Datasets, and Evaluation Metrics}}
+  \item \textit{\href{https://ieeexplore.ieee.org/document/9774086}{Residual Network based Single Object Tracking}}
   \end{enumerate}
 \item Santam
   \begin{enumerate}[label*=\arabic*.]
@@ -53,7 +53,7 @@ The following are summaries of the papers selected by each group member.
 
 \vspace{0.3cm}
 
-\textbf{Summary:} 
+\textbf{Summary:} In the last decade, there have been many advances in computationally efficient SOT (Single Object Tracking) techniques, with emerging strategies becoming increasingly effective for various image features. However, classical correlation filter-based trackers often have issues when encountering abrupt lighting changes, fast motions, partial occlusions, or background clutter. To address these challenges, the authors propose techniques to improve the robustness of correlation filter-based trackers. The proposed methods include dynamic model updates, feature fusion and weighted correlation, scale estimators, multi-scale correlation search regions. They call the resultant filters \emph{Adaptive Correlation Filters}. One of said filters the authors introduce by name is \emph{MOSSE} which can produce stable correlation filters when operating at 669 FPS, while only needing a single frame for initialization. The authors demonstrate the effectiveness of these techniques by comparing their performance to other state-of-the-art trackers on a variety of benchmark datasets. The results show that the proposed methods outperform other trackers in terms of accuracy and robustness.
 
 \vspace{0.3cm}
 
@@ -62,7 +62,8 @@ The following are summaries of the papers selected by each group member.
   \item \textbf{Template matching} is one of the simplest object tracking approaches. A single patch of an image, called a \emph{template}, is chosen. Then, in each new frame the template is slid across the entire image and a similarity measure is computer at each location. Whatever position has the highest similarity score is the new estimated position of the object. 
   \item \textbf{Convolution} involves flipping the kernel (or filter) and sliding it across the image. The dot product of the kernel and the image is computed at each location. This is similar to the similarity measure in template matching.
   \item \textbf{Correlation} by contrast does not flip the filter, and is usually used to measure similarity between images or image patches. This can be used to find how closely a test patch in a new frame matches a template patch from a previous frame.
-  \item \textbf{Frequency Domain Computations} are used to speed up the computation of the correlation between the filter and the image. A Fast Fourier Transform (FFT) is used to convert the image and filter into the frequency domain, where the dot product is computed. The inverse FFT (iFFT) is then used to convert the result back to the spatial domain. This is computationally more efficient than the spatial domain computation, and speeds up matching for high frame rate applications.
+  \item \textbf{Frequency Domain Computations} are used to speed up the computation of the correlation between the filter and the image. A Fast Fourier Transform (FFT) is used to convert the image and filter into the frequency domain, where some computation is performed. The inverse FFT (iFFT) is then used to convert the result back to the spatial domain. This is computationally more efficient than the spatial domain computation, and speeds up matching for high frame rate applications.
+  \item \item \textbf{MOSSE} stands for the Minimum Output Sum of Squared Error. It's a method for training a filter to track an object. The filter is trained on a single frame, and then used to track the object in subsequent frames. The filter is updated at each frame to account for changes in the object's appearance. It's trained by computing the FFT of the image and the FFT of the desired output, and then dividing the two to get the filter. The filter is then updated at each frame by computing the FFT of the image, multiplying it by the filter, and then computing the iFFT to get the output. The filter is then updated by comparing the output to the desired output, and adjusting the filter to minimize the error. And as noted in the paper, "despite the simplicity of the approach, tracking based on [modifications of this filter] perform well under changes in rotation, scale, lighting, and partial occlusion."
 \end{itemize}
 
 \vspace{0.3cm}
@@ -176,11 +177,7 @@ Published in 2021, this paper is a survey providing an overview of the advanceme
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
-
-\vspace{0.3cm}
-
-Published in 2021, this survey paper offers a comprehensive overview of single-object tracking methodologies, common datasets, and performance evaluation metrics. It categorizes tracking approaches and discusses learning-based techniques.
+\textbf{Summary:} Published in 2021, this survey paper offers a comprehensive overview of single-object tracking methodologies, common datasets, and performance evaluation metrics. It categorizes tracking approaches and discusses learning-based techniques.
 
 \vspace{0.3cm}
 
@@ -200,11 +197,7 @@ Published in 2021, this survey paper offers a comprehensive overview of single-o
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
-
-\vspace{0.3cm}
-
-Published in 2022, this paper introduces a new approach to single-object tracking using a Residual Network (RESNET-101) architecture combined with a Region Based Convolutional Neural Network (RCNN) object detector. The method, called R-SOT, is designed to predict bounding boxes around a target object in video frames using supervised learning.
+\textbf{Summary:} Published in 2022, this paper introduces a new approach to single-object tracking using a Residual Network (RESNET-101) architecture combined with a Region Based Convolutional Neural Network (RCNN) object detector. The method, called R-SOT, is designed to predict bounding boxes around a target object in video frames using supervised learning.
 
 \vspace{0.3cm}
 

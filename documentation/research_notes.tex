@@ -14,34 +14,35 @@
 \section*{Research Papers}
 
 \begin{enumerate}
-\item Riley Eaton
-  \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{https://typeset.io/papers/visual-object-tracking-using-adaptive-correlation-filters-1xuhtpe358}{Visual Object Tracking using Adaptive Correlation Filters}}
-  \item \textit{\href{https://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf}{Online Object Tracking: A Benchmark}}
-  \end{enumerate}
-\item Wanju Luo
-  \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
-  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
-  \end{enumerate}
-\item Dichen Feng
-  \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{https://jst.org.in/index.php/pub/article/view/743/669}{Moving Object Tracking and Detection in Videos using MATLAB: A Review}}
-  \item \textit{\href{https://www.semanticscholar.org/paper/Robust-visual-tracking-method-based-on-Harris-Hawks-Charef-Khodja-Abida/e945f79be12f7d64df3d5ef69256e2a0eaec1f03}{Robust visual tracking method based on Harris Hawks algorithm}}
-  \end{enumerate}
-\item Henry Pak
-  \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
-  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
-  \end{enumerate}
-\item Santam
-  \begin{enumerate}[label*=\arabic*.]
-  \item \textit{\href{paper_link_here}{Paper \#1 Name}}
-  \item \textit{\href{paper_link_here}{Paper \#2 Name}}
-  \end{enumerate}
+  \item Riley Eaton
+    \begin{enumerate}[label*=\arabic*.]
+      \item \textit{\href{https://typeset.io/papers/visual-object-tracking-using-adaptive-correlation-filters-1xuhtpe358}{Visual Object Tracking using Adaptive Correlation Filters}}
+      \item \textit{\href{https://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf}{Online Object Tracking: A Benchmark}}
+    \end{enumerate}
+  \item Wanju Luo
+    \begin{enumerate}[label*=\arabic*.]
+      \item \textit{\href{https://www.sciencedirect.com/science/article/pii/B9780323857871000166?via\%3Dihub}{Object detection and tracking}}
+      \item \textit{\href{https://link.springer.com/article/10.1007/s40747-020-00161-4}{Overview and methods of correlation filter algorithms in object tracking}}
+    \end{enumerate}
+  \item Dichen Feng
+    \begin{enumerate}[label*=\arabic*.]
+      \item \textit{\href{https://jst.org.in/index.php/pub/article/view/743/669}{Moving Object Tracking and Detection in Videos using MATLAB: A Review}}
+      \item \textit{\href{https://www.semanticscholar.org/paper/Robust-visual-tracking-method-based-on-Harris-Hawks-Charef-Khodja-Abida/e945f79be12f7d64df3d5ef69256e2a0eaec1f03}{Robust visual tracking method based on Harris Hawks algorithm}}
+    \end{enumerate}
+  \item Henry Pak
+    \begin{enumerate}[label*=\arabic*.]
+      \item \textit{\href{https://www.sciencedirect.com/science/article/pii/S0925231221007220}{Recent advances of single-object tracking methods: A brief survey}}
+      \item \textit{\href{https://arxiv.org/abs/2201.13066}{Single Object Tracking: A Survey of Methods, Datasets, and Evaluation Metrics}}
+      \item \textit{\href{https://ieeexplore.ieee.org/document/9774086}{Residual Network based Single Object Tracking}}
+    \end{enumerate}
+  \item Santam
+    \begin{enumerate}[label*=\arabic*.]
+      \item \textit{\href{paper_link_here}{Paper \#1 Name}}
+      \item \textit{\href{paper_link_here}{Paper \#2 Name}}
+    \end{enumerate}
 \end{enumerate}
 
-\section*{Research Summary}
+\section*{Research Summaries}
 
 The following are summaries of the papers selected by each group member.
 
@@ -52,7 +53,7 @@ The following are summaries of the papers selected by each group member.
 
 \vspace{0.3cm}
 
-\textbf{Summary:} 
+\textbf{Summary:} In the last decade, there have been many advances in computationally efficient SOT (Single Object Tracking) techniques, with emerging strategies becoming increasingly effective for various image features. However, classical correlation filter-based trackers often have issues when encountering abrupt lighting changes, fast motions, partial occlusions, or background clutter. To address these challenges, the authors propose techniques to improve the robustness of correlation filter-based trackers. The proposed methods include dynamic model updates, feature fusion and weighted correlation, scale estimators, multi-scale correlation search regions. They call the resultant filters \emph{Adaptive Correlation Filters}. One of said filters the authors introduce by name is \emph{MOSSE} which can produce stable correlation filters when operating at 669 FPS, while only needing a single frame for initialization. The authors demonstrate the effectiveness of these techniques by comparing their performance to other state-of-the-art trackers on a variety of benchmark datasets. The results show that the proposed methods outperform other trackers in terms of accuracy and robustness.
 
 \vspace{0.3cm}
 
@@ -129,14 +130,14 @@ The following are summaries of the papers selected by each group member.
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
   \item \textbf{Color Recognition:} Use RGB and HSV color space to process video frames. HSV model is very effective on handling linghting variations.
-  \item \textbf{Noise Reducition:} Uses a median filter t0 remove noise from images.
+  \item \textbf{Noise Reducition:} Uses a median filter to remove noise from images.
   \item \textbf{Appoxiimate Median Filter:} Extract moving object from video.
   \item \textbf{Kalman Filter:} Predicts and refines the position of the moving object in frmaes.
   \item \textbf{Dynamic Template Matching:} Adjust the object template if its shape changes during tracking.
 \end{itemize}
 
 % -------------------------- DICHEN FENG PAPER 2 --------------------------
-\subsection*{3.2 \textit{Paper Name}}
+\subsection*{3.2 \textit{Robust visual tracking method based on Harris Hawks algorithm}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Dichen Feng
 
@@ -157,38 +158,22 @@ The following are summaries of the papers selected by each group member.
   \item \textbf{Object Representation:} Uses color-weighted histogram in the HSV color space to describe the object's appearance. Also uses the Bhattacharyya distance for matching the object between frames.
   \item \textbf{Tracking Process:} Target initialized in the first frame using a bounding box. Then the color-weighted histogram of the object is computed as a feature descriptor in the HSV color space to make the algorithm less sensitive to lighting changes. 
   \item \textbf{Pseudo Code:}
-    \begin{itemize}
-      \item 1. Initialize the position of \(N\) Hawks. 
-      \item 2. While \(i < \text{IterMax}\), do:
-      \item 3. Evaluate fitness values of \(N\) Hawks.
-      \item 4. Set \(P_{\text{rabbit}}\) as the best position of the rabbit from the best fitness value.  
-      \item 5. For \(j = 1\) to \(N\), do: 
-      \item 6. Update \(E\), \(E_0\), and \(J\) using Eq. (2).  
-      \item 7. Update \(E\) using Eq. (3).  
-      \item 8. If \(|E| \geq 1\), update Hawks position using Eq. (1). 
-      \item 9. If \(|E| < 1\), then:  
-      \item 10. If \(|E| \geq 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (3). 
-      \item 11. Else if \(|E| < 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (5).  
-      \item 12. Else if \(|E| \geq 0.5\) and \(r < 0.5\), update Hawks position using Eq. (8).  
-      \item 13. Else if \(|E| < 0.5\) and \(r < 0.5\), update Hawks position using Eq. (9).  
-      \item 14. Return \(P_{\text{rabbit}}\).  
-    \end{itemize}
-\end{itemize}
-
-% -------------------------- HENRY PAK PAPER 1 --------------------------
-\subsection*{4.1 \textit{Paper Name}}
-
-\hspace*{\parindent}\textbf{Reviewer:} Henry Pak
-
-\vspace{0.3cm}
-
-\textbf{Summary:}
-
-\vspace{0.3cm}
-
-\textbf{Key Points \& Concepts:}
-\begin{itemize}
-  \item \textbf{Point} Description
+    \begin{enumerate}
+      \item Initialize the position of \(N\) Hawks. 
+      \item While \(i < \textit{IterMax}\), do:
+      \item Evaluate fitness values of \(N\) Hawks.
+      \item Set \(P_{\textit{rabbit}}\) as the best position of the rabbit from the best fitness value.  
+      \item For \(j = 1\) to \(N\), do: 
+      \item Update \(E\), \(E_0\), and \(J\) using Eq. (2).  
+      \item Update \(E\) using Eq. (3).  
+      \item If \(|E| \geq 1\), update Hawks position using Eq. (1). 
+      \item If \(|E| < 1\), then:  
+      \item If \(|E| \geq 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (3). 
+      \item Else if \(|E| < 0.5\) and \(r \geq 0.5\), update Hawks position using Eq. (5).  
+      \item Else if \(|E| \geq 0.5\) and \(r < 0.5\), update Hawks position using Eq. (8).  
+      \item Else if \(|E| < 0.5\) and \(r < 0.5\), update Hawks position using Eq. (9).  
+      \item Return \(P_{\textit{rabbit}}\).  
+    \end{enumerate}
 \end{itemize}
 
 % -------------------------- HENRY PAK PAPER 1 --------------------------
@@ -198,7 +183,7 @@ The following are summaries of the papers selected by each group member.
 
 \vspace{0.3cm}
 
-\textbf{Summary:} Published in 2021, this paper is a survey providing an overview of the advancements in single-object tracking methods. It focuses on the past decades progress, especially in algorithms based on \textbf{correlation filters} and \textbf{deep learning}, which have significantly improved the performance of object trackers.
+\textbf{Summary:} Published in 2021, this paper is a survey providing an overview of the advancements in single-object tracking methods. It focuses on the past decade's progress, especially in algorithms based on \textbf{correlation filters} and \textbf{deep learning}, which have significantly improved the performance of object trackers.
 
 \vspace{0.3cm}
 
@@ -210,19 +195,42 @@ The following are summaries of the papers selected by each group member.
 \end{itemize}
 
 % -------------------------- HENRY PAK PAPER 2 --------------------------
-\subsection*{4.2 \textit{Paper Name}}
+\subsection*{4.2 \textit{Single Object Tracking: A Survey of Methods, Datasets, and Evaluation Metrics}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Henry Pak
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
+\textbf{Summary:} Published in 2021, this survey paper offers a comprehensive overview of single-object tracking methodologies, common datasets, and performance evaluation metrics. It categorizes tracking approaches and discusses learning-based techniques.
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Point} Description
+  \item \textbf{Classification of Methods:} It classifies object tracking methods into four main categories: "feature-based", "segmentation-based", "estimation-based", and "learning-based methods".
+  \item \textbf{Focus on Learning-Based Methods:} It focuses on learning-based methods, which are further divided into generative, discriminative, and reinforcement learning approaches. It also notes that deep learning is a sub-category of discriminative learning.
+  \item \textbf{Feature-Based Methods:} It discusses feature-based methods, like those using color, texture, and optical flow.
+  \item \textbf{Review of Datasets:} It reviews various datasets, including OTB100, OTB50, VOT (various years), ALOV300++, TempleColor128, NUS-PRO, DTB70, Nfs, UAV123, GOT-10k, LaSOT, OxUvA, TrackingNet, and YouTube-BoundingBoxes.
+  \item \textbf{Evaluation Metrics:} It explains common evaluation metrics like center error and region overlap.
+  \item \textbf{Challenges in Object Tracking:} It discusses the various challenges in object tracking such as illumination variations, background clutter, occlusion, and deformation.
+\end{itemize}
+% -------------------------- HENRY PAK PAPER 3 --------------------------
+\subsection*{4.3 \textit{Residual Network based Single Object Tracking}}
+
+\hspace*{\parindent}\textbf{Reviewer:} Henry Pak
+
+\vspace{0.3cm}
+
+\textbf{Summary:} Published in 2022, this paper introduces a new approach to single-object tracking using a Residual Network (RESNET-101) architecture combined with a Region Based Convolutional Neural Network (RCNN) object detector. The method, called R-SOT, is designed to predict bounding boxes around a target object in video frames using supervised learning.
+
+\vspace{0.3cm}
+
+\textbf{Key Points \& Concepts:}
+\begin{itemize}
+  \item \textbf{R-SOT Tracker:} The proposed R-SOT tracker uses RESNET-101 for value prediction and training.
+  \item \textbf{RCNN Object Detector:} It employs an RCNN object detector for identifying bounding boxes.
+  \item \textbf{Performance Evaluation:} The tracker's performance is evaluated on the \textbf{Online Object Tracking Benchmark (OTB) dataset}.
+  \item \textbf{Bounding Box Prediction:} The bounding box prediction relies on the sequence of frames used.
 \end{itemize}
 
 % -------------------------- SANTAM PAPER 1 --------------------------

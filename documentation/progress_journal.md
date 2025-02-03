@@ -1,8 +1,8 @@
-# Team 7 Progress Journal - Rough Draft
+# Team 7 Progress Journal - Team Meeting Notes
 
-## Team Meeting Notes
+## Meeting 1 - January 20th
 
-### Meeting 1 - January 20th
+#### Discussion Points
 
 - We will firstly work towards the literature review from part 1 of the project
 - We have 4 weeks of work until this is due
@@ -20,7 +20,9 @@
 - Aim to hone our literature review efforts into the papers that will help us define our problem statement for part 2 of the project
 - Put together a Kanban or progress board where we can track to-dos. This will help with the development in the repo for part 2
 
-### Meeting 2 - January 27th
+## Meeting 2 - January 27th
+
+#### Discussion Points
 
 - Literature review is due in 3 weeks
 - Discussion on our research papers:
@@ -43,6 +45,36 @@
 - Create a single problem statement using each of our individual parts
 - Try to replicate at least something from one paper using cited source code based on our new technical understanding
 - Build a Kanban board AND create to-do's that will keep us on track for the literature review
+
   - Implementation
   - Consolidating findings
   - Pros and Cons for each paper
+
+## Meeting 3 - February 3rd
+
+#### Discussion Points
+
+- We have 2 meetings until the literature review is due
+  - We need to focus our efforts towards the specific requirements for it
+- There are many different computer vision models being worked on currently for single object tracking, and through our research we have found different methods are most useful in specific scenarios. Because of this, we have determined we will work towards creating an ensemble model using the top picks from our research thus far.
+  - Ensemble models see success in other applications of ML, so we see no reason why they wouldn't be effective in this case
+  - We will select 5 Correlation Filter-Based SoTA Models (1 per group member), and begin our effort to construct an ensemble model based on these
+    - We have compiled a list of these models using our research thus far
+
+#### For next week, each team member must:
+
+- Select a Correlation Filter-Based SoTA Model (list in Discord) and find a paper introducing or utilizing it which **includes source code**
+  - **Riley**: SRDCF (Spatially Regularized Discriminative Correlation Filter)
+  - **Wanju**: KCF (Kernelized Correlation Filter)
+  - **Henry**: ?
+  - **Dichen**: ?
+  - **Santam**: ?
+- Understand the nuances of your selected model. Then, put together a list of scenarios where it performs best, as well as anything it struggles with. This will help us plan and construct the ensemble model.
+- Attempt to reproduce the results of a paper on your model using the provided source code.
+
+#### In next week's meeting, we should:
+
+- Create a single problem statement, using the problems that our separate models aim to solve
+- Begin planning how the ensemble model will be structured based on the advantages and disadvantages of each model. Will we use all 5 or cut it down to 3 or 4 models?
+- Break the literature review down into pieces that we can each individually contribute to
+  - Then, create to-do's for each member to keep us on track

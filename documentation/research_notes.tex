@@ -17,7 +17,7 @@
   \item Riley Eaton
     \begin{enumerate}[label*=\arabic*.]
       \item \textit{\href{https://typeset.io/papers/visual-object-tracking-using-adaptive-correlation-filters-1xuhtpe358}{Visual Object Tracking using Adaptive Correlation Filters}}
-      \item \textit{\href{https://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf}{Online Object Tracking: A Benchmark}}
+      \item \textit{\href{https://www.mdpi.com/1424-8220/21/3/790}{Efficient and Practical Correlation Filter Tracking}}
     \end{enumerate}
   \item Wanju Luo
     \begin{enumerate}[label*=\arabic*.]
@@ -69,19 +69,29 @@ The following are summaries of the papers selected by each group member.
 \vspace{0.3cm}
 
 % -------------------------- RILEY EATON PAPER 2 --------------------------
-\subsection*{1.2 \textit{Online Object Tracking: A Benchmark}}
+\subsection*{1.2 \textit{Efficient and Practical Correlation Filter Tracking}}
 
 \hspace*{\parindent}\textbf{Reviewer:} Riley Eaton
 
 \vspace{0.3cm}
 
-\textbf{Summary:}
+\textbf{Summary:} This work presents a traditional correlation filter tracker that focuses on an efficient, adaptive training sample update scheme to improve robustness while keeping computational demands very low. The tracker leverages classical features (such as HOG) and performs the correlation computations in the Fourier domain—techniques that are well established in computer vision. The authors cite common issues with visual tracking techniques like current discriminative correlation filers (DCF), these include boundary effects, large amounts of calculations which suffer greatly in computationally-constrained scenarios. The authors of this work proposed a way to balance performance and efficiency for object tracking using a new color ratio feature (CR) to create a DCF-based tracker embedded with CR features, namely the CRCF tracker. This new method uses an adaptive sample update scheme in which only sufficiently novel frames, identified via a difference hashing algorithm, are added to a training set, thereby preserving valuable historical appearances and preventing overfitting to transient changes. The resulting training set integrates multiple appearance snapshots of the target instead of relying on a single, continuously updated template. As a result, the filter achieves stronger generalization and is less prone to drifting errors. Finally, to handle both short-term and long-term tracking needs, the system operates in a fast short-term mode (CRCF\_ATU) that addresses partial occlusion and typical frame-to-frame variations, whereas a specific re-detection strategy is activated in long-term mode (CRCF\_LCT) to recover the target when it is fully occluded or exits the field of view for an extended period using a large-scale correlation filter that has an increased awareness of the background (BACF).
 
 \vspace{0.3cm}
 
 \textbf{Key Points \& Concepts:}
 \begin{itemize}
-  \item \textbf{Point} Description
+  \item \textbf{Correlation Filter:} A technique where learning the object appearance is framed as a convolution problem in the frequency domain. By using fast Fourier transforms (FFT), correlation-based tracking can be performed efficiently, usually in real time.
+  \item \textbf{Discriminative Correlation Filers} treat correlation filtering as a supervised learning problem, training on both positive and negative samples to maintain high precision in challenging environments (occlusions, distractors, appearance variations), especially in real-time tracking. This means the filter is trained to minimize error across multiple labeled examples, rather than simply produce a peak for one template.
+  \item \textbf{Training Sample Set:} A collection of cropped image patches (frames) where the tracker has high confidence in the object location. The filter is trained on this entire set, rather than just the most recent frame.
+  \item \textbf{Color Ratio (CR) Features:} These are features in each frame that are represented by the ratio between the object's and background's respective color histograms. In addition to HOG and grayscale, these features help distinguish between the object and the background in many real-world scenarios. Each pixel channel is weighted by sqrt(p[target]/p[background]) where p is the color histogram.
+  \item \textbf{Transient Changes:} These are temporary changes in the object's appearance that are not representative of the object's overall appearance.
+  \item \textbf{Difference Hashing Algorithm (DHA):} An image-similarity measure that converts an image patch into a small binary hash matrix. The similarity of two patches is computed via the Hamming distance. Here it decides whether a new frame's appearance is different enough from stored samples to include in the training set.
+  \item \textbf{Hamming Distance:} The measure used to compare two image patches after they are converted into binary hash matrices, where each patch is represented with an an 8x8 binary matrix. The Hamming Distance between two such matrices is the count of positions at which the corresponding bits differ. This indicates how different two patches are at the bit level.
+  \item \textbf{Short-Term tracking} assumes the target remains in view with limited full occlusion.
+  \item \textbf{Long-Term tracking} assumes disappearances, out-of-view scenarios, or severe occlusions for any period of time.
+  \item \textbf{Re-Detection strategy} discussed in the paper is a method to recover the target when it is fully occluded or exits the field of view for an extended period. This is done using a Background-Aware Correlation Filter (BACF).
+  \item \textbf{Background-Aware Correlation Filter (BACF):} During re-detection, a Background-Aware Correlation Filter is trained for wider search regions using the representative samples stored in the training set. It then performs a global (or near-global) search over an expanding image window, guided by a random-walk model that increases the search region over time. If the filter's response meets a reliability threshold at some candidate location, that position is treated as the newly found target, and normal (short-term) tracking is resumed from there.
 \end{itemize}
 
 % -------------------------- WANJU LUO PAPER 1 --------------------------

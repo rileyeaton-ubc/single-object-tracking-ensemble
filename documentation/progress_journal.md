@@ -66,8 +66,8 @@
 - Select a Correlation Filter-Based SoTA Model (list in Discord) and find a paper introducing or utilizing it which **includes source code**
   - **Riley**: SRDCF (Spatially Regularized Discriminative Correlation Filter)
   - **Wanju**: KCF (Kernelized Correlation Filter)
-  - **Henry**: ?
-  - **Dichen**: ?
+  - **Henry**: CSK?
+  - **Dichen**: MOSSE
   - **Santam**: ?
 - Understand the nuances of your selected model. Then, put together a list of scenarios where it performs best, as well as anything it struggles with. This will help us plan and construct the ensemble model.
 - Attempt to reproduce the results of a paper on your model using the provided source code.

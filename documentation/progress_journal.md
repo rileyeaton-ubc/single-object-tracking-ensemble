@@ -46,3 +46,64 @@
   - Implementation
   - Consolidating findings
   - Pros and Cons for each paper
+ 
+### Meeting 3 - February 7th
+
+- Literature review is due in 2 weeks
+- Literature Review Progress:
+  - Identified key Correlation Filter SOT techniques for our solution
+  - We narrowed down on five Correlation Filter Techniques, and each member of group focussed on diving into their selected SOT strategy
+  - Gathered Source code for each of these SOT techniques. We will start looking at implementing these models over the next few weeks
+ 
+#### For next week, each team member must:
+
+- Refine selected model's source code, begin looking at implementing a working model
+- Begin working on the literature review document, gather and present sources used in the 'Related Works' section of the document
+- Analyse the strengths and weaknesses of their selected Correlation Filter based SOT technique
+
+#### In next week's meeting, we should:
+
+- Discuss how the team is planning on completing the literature review document
+  - Allocate specific tasks to group members for completing the literature review
+- Work on setting up a functional testing environment
+- Complete a rough implementation of the SOT model.
+
+### Meeting 4 - February 14th
+
+- Literature review is due in a week
+- Consolidated findings of each group member and each SOT method
+- Troubleshooting source code setup issues, making progress
+- Literature Review Progress:
+  - We have enough information and sources to effectively start working on completing the upcoming literature review deliverable 
+ 
+#### For next week, each team member must:
+
+- Continue drafting and organizing the literature review
+- Finalize the problem statement
+- Ensure at least one source code implementation runs properly
+
+#### In next week's meeting, we should:
+
+- Ensure the team is on track to meet the deadline for the literature review submission
+- Go over source code implementation and try to get at least one of them working
+- Decide which image dataset the team is going to use for evaluating models, to ensure consistency
+
+### Meeting 5 - February 21st
+
+- Successfully ran one team member's code implementation
+- Selected the OTB2015 and LaSOT datasets for initial benchmarking
+- Worked on completing the literature review report
+- Assigned tasks to group members for completing the upcoming assignment
+ 
+#### For next week, each team member must:
+
+- Until the deadline(Monday), finalize report sections and ensure a cohesive write up
+- Run additional tests with the chosen dataset
+- Check citations and references in the document
+- Add LaTex formatting to achieve a visually pleasing document
+
+#### In next week's meeting, we should:
+
+- Focus on getting more team member's models up and running
+- Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods
+- Define goals for the next phase of development

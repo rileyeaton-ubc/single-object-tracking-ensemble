@@ -49,7 +49,7 @@
   - Implementation
   - Consolidating findings
   - Pros and Cons for each paper
-
+ 
 ## Meeting 3 - February 3rd
 
 #### Discussion Points
@@ -78,3 +78,43 @@
 - Begin planning how the ensemble model will be structured based on the advantages and disadvantages of each model. Will we use all 5 or cut it down to 3 or 4 models?
 - Break the literature review down into pieces that we can each individually contribute to
   - Then, create to-do's for each member to keep us on track
+
+### Meeting 4 - February 14th
+
+- Literature review is due in a week
+- Consolidated findings of each group member and each SOT method
+- Troubleshooting source code setup issues, making progress
+- Literature Review Progress:
+  - We have enough information and sources to effectively start working on completing the upcoming literature review deliverable 
+ 
+#### For next week, each team member must:
+
+- Continue drafting and organizing the literature review
+- Finalize the problem statement
+- Ensure at least one source code implementation runs properly
+
+#### In next week's meeting, we should:
+
+- Ensure the team is on track to meet the deadline for the literature review submission
+- Go over source code implementation and try to get at least one of them working
+- Decide which image dataset the team is going to use for evaluating models, to ensure consistency
+
+### Meeting 5 - February 21st
+
+- Successfully ran one team member's code implementation
+- Selected the OTB2015 and LaSOT datasets for initial benchmarking
+- Worked on completing the literature review report
+- Assigned tasks to group members for completing the upcoming assignment
+ 
+#### For next week, each team member must:
+
+- Until the deadline(Monday), finalize report sections and ensure a cohesive write up
+- Run additional tests with the chosen dataset
+- Check citations and references in the document
+- Add LaTex formatting to achieve a visually pleasing document
+
+#### In next week's meeting, we should:
+
+- Focus on getting more team member's models up and running
+- Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods
+- Define goals for the next phase of development

@@ -8,8 +8,8 @@
 - Wanju Luo
 - Dichen Feng
 - Henry Pak
-- Santam
+- Santam Bhattacharya
 
 **[Weekly Progress Journal](documentation/progress_journal.md)**
 
-**[Research Notes](documentation/research_notes.pdf)**
+**[Literature Review](documentation/part1/literature_review.pdf)**

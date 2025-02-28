@@ -119,7 +119,7 @@
 - Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods
 - Define goals for the next phase of development
 
-### Meeting 6 - February 21st
+### Meeting 6 - February 28th
 
 - Now that we have submitted our report, we need to start getting more code working
 - We will be meeting with the TA today, lets make sure we know what to discuss. Have any questions ready

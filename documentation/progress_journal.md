@@ -49,7 +49,7 @@
   - Implementation
   - Consolidating findings
   - Pros and Cons for each paper
- 
+
 ## Meeting 3 - February 3rd
 
 #### Discussion Points
@@ -85,8 +85,8 @@
 - Consolidated findings of each group member and each SOT method
 - Troubleshooting source code setup issues, making progress
 - Literature Review Progress:
-  - We have enough information and sources to effectively start working on completing the upcoming literature review deliverable 
- 
+  - We have enough information and sources to effectively start working on completing the upcoming literature review deliverable
+
 #### For next week, each team member must:
 
 - Continue drafting and organizing the literature review
@@ -105,7 +105,7 @@
 - Selected the OTB2015 and LaSOT datasets for initial benchmarking
 - Worked on completing the literature review report
 - Assigned tasks to group members for completing the upcoming assignment
- 
+
 #### For next week, each team member must:
 
 - Until the deadline(Monday), finalize report sections and ensure a cohesive write up
@@ -118,3 +118,19 @@
 - Focus on getting more team member's models up and running
 - Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods
 - Define goals for the next phase of development
+
+### Meeting 6 - February 28th
+
+- Now that we have submitted our report, we need to start getting more code working
+- We will be meeting with the TA today, lets make sure we know what to discuss. Have any questions ready
+
+#### For next week, each team member must:
+
+- Complete the replication of their model
+- Upload their working code to their respective sub-folder in the repository under `src/MODEL_NAME`
+- Work on getting their model benchmarking on OTB2015
+
+#### In next week's meeting, we should:
+
+- Discuss any problems we have run into when replicating
+- Break down the problem of how to ensemble all the models together

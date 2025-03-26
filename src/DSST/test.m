@@ -1,0 +1,1 @@
+tracker("../../../OTB2015/OTB2015/Bird1/img");

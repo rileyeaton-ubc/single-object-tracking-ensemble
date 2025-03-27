@@ -1,1 +1,0 @@
-tracker("../../../OTB2015/OTB2015/Basketball/img");

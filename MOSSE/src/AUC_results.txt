@@ -1,0 +1,25 @@
+AUC Results for Each Dataset:
+
+Dataset Basketball: AUC = 0.1463
+Dataset Biker: AUC = 0.0519
+Dataset Bird1: AUC = 0.2375
+Dataset Bird2: AUC = 0.1556
+Dataset BlurBody: AUC = 0.2304
+Dataset BlurCar1: AUC = 0.0423
+Dataset BlurCar2: AUC = 0.1031
+Dataset BlurCar3: AUC = 0.0711
+Dataset BlurCar4: AUC = 0.7240
+Dataset BlurFace: AUC = 0.2604
+Dataset BlurOwl: AUC = 0.4568
+Dataset Board: AUC = 0.0770
+Dataset Bolt: AUC = 0.0486
+Dataset Bolt2: AUC = 0.3561
+Dataset Box: AUC = 0.0460
+Dataset Boy: AUC = 0.0339
+Dataset Car1: AUC = 0.2494
+Dataset Car2: AUC = 0.1887
+Dataset Car24: AUC = 0.4163
+Dataset Car4: AUC = 0.3515
+Dataset CarDark: AUC = 0.1869
+Dataset CarScale: AUC = 0.3709
+Dataset ClifBar: AUC = 0.1146

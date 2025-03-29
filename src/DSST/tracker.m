@@ -58,8 +58,8 @@ function dsst_tracker(path, initRect)
        close;
     end
     %% Initialization
-    pos = [initRect(1) + initRect(3)/2, initRect(2) + initRect(4)/2]; % [x_center, y_center]
-    target_sz = [initRect(3), initRect(4)]; % [w,h]
+    pos = [initRect(2) + initRect(4)/2, initRect(1) + initRect(3)/2]; % [y_center, x_center]
+    target_sz = [initRect(4), initRect(3)]; % [h,w]
     window_sz = floor(target_sz * (1 + padding));
     output_sigma = sqrt(prod(target_sz)) * output_sigma_factor;
     yf = fft2(gaussian_shaped_labels(output_sigma, window_sz));
@@ -129,22 +129,22 @@ function dsst_tracker(path, initRect)
         end
 
         % Draw bounding box
-        topLeft = pos - (target_sz * currentScaleFactor) / 2;
-        rect_pos = [topLeft(1), topLeft(2), target_sz(1) * currentScaleFactor, target_sz(2) * currentScaleFactor];
-        predictedBoxes(frame, :) = rect_pos;
+        topLeft = pos - (target_sz * currentScaleFactor) / 2;  % [y, x]
+        rect_pos = [topLeft(1), topLeft(2), target_sz(1) * currentScaleFactor, target_sz(2) * currentScaleFactor]; % [y, x, h, w]
+        draw_rect = [rect_pos(2), rect_pos(1), rect_pos(4), rect_pos(3)]; % [x, y, w, h]predictedBoxes(frame, :) = rect_pos;
+        predictedBoxes(frame, :) = draw_rect;
 
         gtRect = groundTruth(frame, :);
         gtRect(1:2) = gtRect(1:2)+1;
-        iouscores(frame) = computeIoU(rect_pos, gtRect); 
+        iouscores(frame) = computeIoU(draw_rect, gtRect); 
 
-        predCenter = [rect_pos(1) + rect_pos(3)/2, rect_pos(2) + rect_pos(4)/2];
-        gtCenter = [groundTruth(frame,1) + groundTruth(frame,3)/2, ...
-                groundTruth(frame,2) + groundTruth(frame,4)/2];
+        predCenter = [draw_rect(1) + draw_rect(3)/2, draw_rect(2) + draw_rect(4)/2];
+        gtCenter = [gtRect(1) + gtRect(3)/2, gtRect(2) + gtRect(4)/2];
         centerErrors(frame) = norm(predCenter - gtCenter);
 
         imshow(im_disp); hold on;
         %draw_rect = [rect_pos(2), rect_pos(1), rect_pos(4), rect_pos(3)];
-        rectangle('Position', rect_pos, 'EdgeColor', 'r', 'LineWidth', 2);
+        rectangle('Position', draw_rect, 'EdgeColor', 'r', 'LineWidth', 2);
         rectangle('Position', gtRect, 'EdgeColor', 'g', 'LineWidth', 2);
         legend('Tracker (Red)', 'Ground Truth (Green)');
         title(sprintf('Frame %d / %d | IOU: %.2f | Size : %d %d', frame, numFrames, iouscores(frame), size(im_disp,1), size(im_disp,2)));

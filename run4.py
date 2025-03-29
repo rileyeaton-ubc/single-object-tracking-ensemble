@@ -3,7 +3,6 @@ import glob
 import cv2
 import math
 import numpy as np
-
 from kcf import Tracker  # Make sure that the Tracker class from your KCF module is correctly imported
 
 def parse_groundtruth(gt_file):
@@ -241,5 +240,5 @@ if __name__ == "__main__":
     # Set the OTB dataset base path to where your OTB2015 data is stored.
     # For example, if your OTB2015 data is located in "/Users/yourname/datasets/OTB2015/OTB2015",
     # update the otb_base variable accordingly.
-    otb_base = "/Users/luowanju/kcf/KCF/OTB2015/OTB2015"
+    otb_base = "../data/OTB2015"
     run_all_otb_sequences(otb_base, dist_threshold=30)

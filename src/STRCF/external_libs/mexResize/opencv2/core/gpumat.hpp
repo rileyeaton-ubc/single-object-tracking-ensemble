@@ -22,7 +22,7 @@
 //
 //   * Redistribution's in binary form must reproduce the above copyright notice,
 //     this list of conditions and the following disclaimer in the documentation
-//     and/or other GpuMaterials provided with the distribution.
+//     and/or other materials provided with the distribution.
 //
 //   * The name of the copyright holders may not be used to endorse or promote products
 //     derived from this software without specific prior written permission.
@@ -46,7 +46,7 @@
 #ifdef __cplusplus
 
 #include "opencv2/core/core.hpp"
-#include "opencv2/core/devmem2d.hpp"
+#include "opencv2/core/cuda_devptrs.hpp"
 
 namespace cv { namespace gpu
 {
@@ -72,10 +72,18 @@ namespace cv { namespace gpu
         FEATURE_SET_COMPUTE_13 = 13,
         FEATURE_SET_COMPUTE_20 = 20,
         FEATURE_SET_COMPUTE_21 = 21,
+        FEATURE_SET_COMPUTE_30 = 30,
+        FEATURE_SET_COMPUTE_35 = 35,
+
         GLOBAL_ATOMICS = FEATURE_SET_COMPUTE_11,
         SHARED_ATOMICS = FEATURE_SET_COMPUTE_12,
-        NATIVE_DOUBLE = FEATURE_SET_COMPUTE_13
+        NATIVE_DOUBLE = FEATURE_SET_COMPUTE_13,
+        WARP_SHUFFLE_FUNCTIONS = FEATURE_SET_COMPUTE_30,
+        DYNAMIC_PARALLELISM = FEATURE_SET_COMPUTE_35
     };
+
+    // Checks whether current device supports the given feature
+    CV_EXPORTS bool deviceSupports(FeatureSet feature_set);
 
     // Gives information about what GPU archs this OpenCV GPU module was
     // compiled for
@@ -112,6 +120,9 @@ namespace cv { namespace gpu
 
         int multiProcessorCount() const { return multi_processor_count_; }
 
+        size_t sharedMemPerBlock() const;
+
+        void queryMemory(size_t& totalMemory, size_t& freeMemory) const;
         size_t freeMemory() const;
         size_t totalMemory() const;
 
@@ -125,7 +136,6 @@ namespace cv { namespace gpu
 
     private:
         void query();
-        void queryMemory(size_t& free_memory, size_t& total_memory) const;
 
         int device_id_;
 
@@ -263,9 +273,13 @@ namespace cv { namespace gpu
         template<typename _Tp> _Tp* ptr(int y = 0);
         template<typename _Tp> const _Tp* ptr(int y = 0) const;
 
-        template <typename _Tp> operator DevMem2D_<_Tp>() const;
-        template <typename _Tp> operator PtrStep_<_Tp>() const;
+        template <typename _Tp> operator PtrStepSz<_Tp>() const;
         template <typename _Tp> operator PtrStep<_Tp>() const;
+
+        // Deprecated function
+        template <typename _Tp> CV_GPU_DEPRECATED operator DevMem2D_<_Tp>() const;
+        template <typename _Tp> CV_GPU_DEPRECATED operator PtrStep_<_Tp>() const;
+        #undef CV_GPU_DEPRECATED
 
         /*! includes several bit-fields:
         - the magic signature
@@ -497,6 +511,17 @@ namespace cv { namespace gpu
         return *this;
     }
 
+    /** @cond IGNORED */
+    template <class T> inline GpuMat::operator PtrStepSz<T>() const
+    {
+        return PtrStepSz<T>(rows, cols, (T*)data, step);
+    }
+
+    template <class T> inline GpuMat::operator PtrStep<T>() const
+    {
+        return PtrStep<T>((T*)data, step);
+    }
+
     template <class T> inline GpuMat::operator DevMem2D_<T>() const
     {
         return DevMem2D_<T>(rows, cols, (T*)data, step);
@@ -506,11 +531,7 @@ namespace cv { namespace gpu
     {
         return PtrStep_<T>(static_cast< DevMem2D_<T> >(*this));
     }
-
-    template <class T> inline GpuMat::operator PtrStep<T>() const
-    {
-        return PtrStep<T>((T*)data, step);
-    }
+    /** @endcond */
 
     inline GpuMat createContinuous(int rows, int cols, int type)
     {
@@ -534,29 +555,6 @@ namespace cv { namespace gpu
     inline void ensureSizeIsEnough(Size size, int type, GpuMat& m)
     {
         ensureSizeIsEnough(size.height, size.width, type, m);
-    }
-
-    inline void createContinuous(int rows, int cols, int type, GpuMat& m)
-    {
-        int area = rows * cols;
-        if (!m.isContinuous() || m.type() != type || m.size().area() != area)
-            ensureSizeIsEnough(1, area, type, m);
-        m = m.reshape(0, rows);
-    }
-
-    inline void ensureSizeIsEnough(int rows, int cols, int type, GpuMat& m)
-    {
-        if (m.type() == type && m.rows >= rows && m.cols >= cols)
-            m = m(Rect(0, 0, cols, rows));
-        else
-            m.create(rows, cols, type);
-    }
-
-    inline GpuMat allocMatFromBuf(int rows, int cols, int type, GpuMat &mat)
-    {
-        if (!mat.empty() && mat.type() == type && mat.rows >= rows && mat.cols >= cols)
-            return mat(Rect(0, 0, cols, rows));
-        return mat = GpuMat(rows, cols, type);
     }
 }}
 

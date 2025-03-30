@@ -42,9 +42,10 @@ if exist('external_libs/matconvnet/matlab', 'dir') == 7
     if ~(exist('imagenet-vgg-m-2048.mat', 'file') == 2)
         disp('Downloading the network "imagenet-vgg-m-2048.mat" from "http://www.vlfeat.org/matconvnet/models/imagenet-vgg-m-2048.mat"...')
         urlwrite('http://www.vlfeat.org/matconvnet/models/imagenet-vgg-m-2048.mat', 'imagenet-vgg-m-2048.mat')
-        disp('Done!')
+        disp('Done! Install complete.')
     end
     cd(home_dir)
+    disp('Already downloaded the network! Install complete.')
 else
     warning('STRCF:install', 'Matconvnet not found. Clone this submodule if you want to use CNN features. Skipping for now.')
 end

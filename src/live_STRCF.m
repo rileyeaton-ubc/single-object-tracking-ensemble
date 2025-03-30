@@ -1,28 +1,18 @@
-% Run the standard STRCF model live
-disp('\n------ Start of Live STRCF ------\n');
+% Function to serve as the live inference of STRCF model for a given set of
+% frames
+function tempResultBox = live_STRCF(resultBox, lastNFramePaths)
 
-% Set subfolder name and add it to paths
+% Sedtup path to STRCF
 strcfFolder = 'STRCF';
 addpath(strcfFolder);
-setup_paths();
 
-% Set remaining variables
-sequencesFolder = 'sequences';
-sequencePath = strcat(strcfFolder, '/', sequencesFolder);
-video = 'Human3';
-videoPath = [sequencePath '/' video];
+% Update the image structure to pass to the model
+imageStruct.format = "otb";
+imageStruct.len = 1;
+imageStruct.init_rect = resultBox;
+imageStruct.s_frames = lastNFramePaths;
 
-% store the frame sequence using load_video_info
-[seq] = load_video_info(videoPath);
-
-% Run STRCF
-results = run_STRCF(seq);
-%results = run_DeepSTRCF(seq);
-
-% Store boxes from results
-pd_boxes = results.res;
-
-% Remove subfolder from path
-rmpath(strcfFolder); 
-
-disp('\n------ End of Live STRCF ------\n');
+% Run STRCF and return the results
+boxResult = run_STRCF(imageStruct);
+tempResultBox = boxResult.res;
+return

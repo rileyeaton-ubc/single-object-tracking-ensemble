@@ -385,5 +385,5 @@ end
 
 [~, results] = get_sequence_results(seq);
 
-disp(['fps: ' num2str(results.fps)])
+% disp(['fps: ' num2str(results.fps)])
 

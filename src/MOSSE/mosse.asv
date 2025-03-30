@@ -10,11 +10,13 @@ successData = {};
 
 config = fileread("../../../config.json"); 
 config = jsondecode(config);
-datadir = config.datafile_path;%Read the config file to access datasets
+datapath = config.datafile_path;%Read the config file to access datasets
 datasets = dir(datapath);
-allFolders = datasets(~ismember({datasets.name},{'.', '..'}));
+datasets = datasets(~ismember({datasets.name},{'.', '..'}));
 % Loop over each dataset folder
-for d = 1:length(allFolders)
+for d = 1:length(datasets)
+    data = fullfile(datapath, datasets(d).name);
+    disp(data);
     dataset = allFolders(d).name;
     fprintf('Processing dataset: %s\n', dataset);
     pathDataset = fullfile(datadir, dataset);

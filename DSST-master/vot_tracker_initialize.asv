@@ -1,4 +1,4 @@
-function [images, region] = vot_tracker_initialize(datadir)
+function [images, region] = vot_tracker_initialize(datadir);
 
 % read the images file
 %{
@@ -8,6 +8,9 @@ fclose(fid);
 images = images{1};
 
 %}
+config = fileread("../config.json");
+config = jsondecode(config);
+datapath = config.datafile_path;
 
 
 % Define the path to the image sequence

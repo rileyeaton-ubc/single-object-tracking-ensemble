@@ -1,4 +1,4 @@
-function wrapper
+function wrapper(datadir)
 %% VOT integration example wrapper (old approach)
 
 % *************************************************************
@@ -16,7 +16,7 @@ tracker = 'DSST';
 % **********************************
 % VOT: Read input data
 % **********************************
-[images, region] = vot_tracker_initialize();
+[images, region] = vot_tracker_initialize(datadir);
 
 results = cell(length(images), 1);
 
@@ -93,7 +93,7 @@ if mod(nScales,2) == 0
     scale_window = scale_window(2:end);
 else
     scale_window = single(hann(nScales));
-end;
+end
 
 ss = 1:nScales;
 scaleFactors = scale_step.^(ceil(nScales/2) - ss);
@@ -112,7 +112,7 @@ im = imread(images{1});
 min_scale_factor = scale_step ^ ceil(log(max(5 ./ sz)) / log(scale_step));
 max_scale_factor = scale_step ^ floor(log(min([size(im,1) size(im,2)] ./ base_target_sz)) / log(scale_step));
 
-for frame = 1:num_frames,
+for frame = 1:num_frames
     %load image
     im = imread(images{frame});
     
@@ -160,7 +160,7 @@ for frame = 1:num_frames,
     new_sf_den = sum(xsf .* conj(xsf), 1);
     
     
-    if frame == 1,  %first frame, train with a single image
+    if frame == 1  %first frame, train with a single image
         hf_den = new_hf_den;
         hf_num = new_hf_num;
         sf_den = new_sf_den;
@@ -179,13 +179,26 @@ for frame = 1:num_frames,
     
     if isempty(location)
         location = 0;
-    end;
+    end
     
     results{frame} = location;
+    
+    figure(1);  % Make sure to always show the result in the same figure
+    imshow(im);  % Display the image
+    
+    % Draw a rectangle around the tracked object
+    rectangle('Position', location, 'EdgeColor', 'r', 'LineWidth', 2);
+    
+    % Optionally, add a title with the frame number and position
+    title(sprintf('Frame: %d, Position: [%.2f, %.2f]', frame, pos(1), pos(2)));
+    
+    % Pause to make the display live (adjust the time to your desired frame rate)
+    % pause(0.05);  % Pause for 50ms between frames (adjust as needed)
 end
 
 % **********************************
 % VOT: Output the results
 % **********************************
 vot_tracker_results(results);
+end
 

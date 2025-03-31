@@ -79,7 +79,9 @@
 - Break the literature review down into pieces that we can each individually contribute to
   - Then, create to-do's for each member to keep us on track
 
-### Meeting 4 - February 14th
+## Meeting 4 - February 14th
+
+#### Discussion Points
 
 - Literature review is due in a week
 - Consolidated findings of each group member and each SOT method
@@ -99,7 +101,9 @@
 - Go over source code implementation and try to get at least one of them working
 - Decide which image dataset the team is going to use for evaluating models, to ensure consistency
 
-### Meeting 5 - February 21st
+## Meeting 5 - February 21st
+
+#### Discussion Points
 
 - Successfully ran one team member's code implementation
 - Selected the OTB2015 and LaSOT datasets for initial benchmarking
@@ -119,7 +123,9 @@
 - Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods
 - Define goals for the next phase of development
 
-### Meeting 6 - February 28th
+## Meeting 6 - February 28th
+
+#### Discussion Points
 
 - Now that we have submitted our report, we need to start getting more code working
 - We will be meeting with the TA today, lets make sure we know what to discuss. Have any questions ready
@@ -135,10 +141,12 @@
 - Discuss any problems we have run into when replicating
 - Break down the problem of how to ensemble all the models together
 
-### Meeting 7 - March 6th
+## Meeting 7 - March 6th
+
+#### Discussion Points
 
 - Focused on replicating individual tracking models
-- Discussed model integration and file formatting for ensemble testing 
+- Discussed model integration and file formatting for ensemble testing
 - Decide on file naming convention and folder structure for organizing the repository
 - Begin work on a tradional SOT model to fulfill project requirements
 
@@ -153,7 +161,9 @@
 - Finalize the format for tracker outputs
 - Begin writing wrapper for ensemble logic
 
-### Meeting 8 - March 13th
+## Meeting 8 - March 13th
+
+#### Discussion Points
 
 - Initial benchmarks from OTB2015 sequences collected
 - Started working on a MATLAB wrapper to unify outputs across trackers
@@ -169,7 +179,9 @@
 
 - Troubleshoot any alignment or output issues
 
-  ### Meeting 9 - March 20th
+## Meeting 9 - March 20th
+
+#### Discussion Points
 
 - Added visualizations to display all individual bounding boxes and the ensemble result
 - KCF (Python/OpenCV) and STRCF (C/MEX + OpenCV) running; DSST and MOSSE working in MATLAB but still being debugged
@@ -185,7 +197,9 @@
 
 - Determine a strategy for completing the project deliverables and handing in finished code
 
-  ### Meeting 10 - March 27th
+## Meeting 10 - March 27th
+
+#### Discussion Points
 
 - System more stable now on difficult sequences
 - Drafted content for Final Report

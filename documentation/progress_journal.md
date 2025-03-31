@@ -134,3 +134,67 @@
 
 - Discuss any problems we have run into when replicating
 - Break down the problem of how to ensemble all the models together
+
+### Meeting 7 - March 6th
+
+- Focused on replicating individual tracking models
+- Discussed model integration and file formatting for ensemble testing 
+- Decide on file naming convention and folder structure for organizing the repository
+- Begin work on a tradional SOT model to fulfill project requirements
+
+#### For next week, each team member must:
+
+- Push clean, working code to the repository
+- Convert outputs to standardized format
+- Benchmark their model on OTB2015 sequences
+
+#### In next week's meeting, we should:
+
+- Finalize the format for tracker outputs
+- Begin writing wrapper for ensemble logic
+
+### Meeting 8 - March 13th
+
+- Initial benchmarks from OTB2015 sequences collected
+- Started working on a MATLAB wrapper to unify outputs across trackers
+- Identified differences in bounding box formats and output styles between models
+- Discussed model integration and file formatting for ensemble testing
+
+#### For next week, each team member must:
+
+- Validate that their tracker outputs are aligned and compatible with ensemble wrapper
+- Begin visualizing tracker overlap
+
+#### In next week's meeting, we should:
+
+- Troubleshoot any alignment or output issues
+
+  ### Meeting 9 - March 20th
+
+- Added visualizations to display all individual bounding boxes and the ensemble result
+- KCF (Python/OpenCV) and STRCF (C/MEX + OpenCV) running; DSST and MOSSE working in MATLAB but still being debugged
+- Established Benchmarks and Accuracy metrics across different models
+
+#### For next week, each team member must:
+
+- Start preparing figures and tables for final report
+- Look into developing a solution for the live demonstration
+- Begin working on the final project deliverables, including the presentation and the final report
+
+#### In next week's meeting, we should:
+
+- Determine a strategy for completing the project deliverables and handing in finished code
+
+  ### Meeting 10 - March 27th
+
+- System more stable now on difficult sequences
+- Drafted content for Final Report
+- STRCF successfully tested on live webcam input
+
+#### For next week, each team member must:
+
+- Finish system integrations and consolidate different SOT models
+- Finalize model performance plots and benchmark tables
+- Polish code for submission (remove test scripts, comment code)
+- Finalize all documentation and assign final tasks before submission
+- Plan the presentation and live demonstration

@@ -7,7 +7,7 @@
 % ---------------------------- CONFIGURATION ------------------------------
 % Clear workspace and close existing figures
 clearvars;
-close all;
+% close all;
 
 % Variables for saving frame images
 targetFolderName = 'live_frames';   % Name of the subfolder to save frame images to    
@@ -16,12 +16,16 @@ fileExtension = 'png';           % Image format
 fileIndex = 0;                   % Starting index of frame images
 fullFolderPath = fullfile(pwd, targetFolderName);
 
+% Sedtup path to STRCF
+strcfFolder = 'STRCF';
+addpath(strcfFolder);
+
 % Desired video framerate (in best case scenario)
 desiredFramerate = 10;
 
 % Time (in seconds) for the model to run for, and the time it initially
 % waits to start the tracking using the initial target area
-delayTime = 10;
+delayTime = 5;
 modelRunTime = 30;
 
 % The percent of the middle of the webcam image that will be filled by the
@@ -108,6 +112,8 @@ initialBox = true;         % Flag for when the initial target area is shown
 currPredictionRect = [];   % The current predicted rectangle coordinates
 frameFilePaths = [""];     % Array to store all frame image filepath strings
 countdownSecondsPrinted = [delayTime+1]; % Array to store the seconds printed for countdown
+persistent_lost_status = false; % Initialize: Assume tracker is not lost initially
+latest_peak_score = NaN;   % Initialize peak score
 totalLoopTimer = tic;      % Start timer before the loop
 disp('The object within the blue target area will be tracked in: ')
 
@@ -152,8 +158,35 @@ while keepRunning && ishandle(liveFig)
             case 2
                 disp('Using KCF')
             % STRCF
-            case 3
-                tempResultBox = live_STRCF(resultBox, lastNFramePaths);
+            case 3 % STRCF
+                % Pass the persistent status INTO live_STRCF
+                [tempResultBox, persistent_lost_status, latest_peak_score] = live_STRCF(resultBox, lastNFramePaths, persistent_lost_status);
+                % NOTE: We modified live_STRCF to return the new status and score
+            
+                % --- Use the persistent_lost_status to set box color ---
+                if persistent_lost_status
+                    boxColor = lostColor; % Use red if lost
+                else
+                    boxColor = detectedColor; % Use green if tracking/re-acquired
+                end
+                % --- Update resultBox if tracking ---
+                % Only update the reference box if the tracker is NOT lost
+                if ~persistent_lost_status && ~isempty(tempResultBox)
+                     % Assuming tempResultBox holds the result for the *last* frame of the batch
+                     % Check the dimensions/structure of tempResultBox as returned
+                     if size(tempResultBox,1) >= 1
+                         resultBox = tempResultBox(end,:);
+                     else
+                         warning('STRCF returned an empty or invalid result box.');
+                         % Decide how to handle this - maybe mark as lost?
+                         % persistent_lost_status = true;
+                         % boxColor = lostColor;
+                     end
+                elseif isempty(tempResultBox)
+                     warning('STRCF returned empty result.');
+                     % persistent_lost_status = true; % Consider marking as lost if empty
+                     % boxColor = lostColor;
+                end % else: if lost, resultBox retains its previous value
             % C-COT
             case 4
                 disp('Using C-COT')
@@ -166,7 +199,7 @@ while keepRunning && ishandle(liveFig)
         
         % If the returned result box contains results, update the current box
         if not(isempty(tempResultBox))
-            resultBox = tempResultBox(pastFrameCount,:);
+            resultBox = tempResultBox;
         end
 
         % Add one frame to the active model frame counter, and check the
@@ -226,7 +259,7 @@ while keepRunning && ishandle(liveFig)
     % Draw the rectangle and store its value
     currPredictionRect = rectangle(currentAxes, ...
                       'Position', resultBox, ...
-                      'EdgeColor', boxColor, ...  % green
+                      'EdgeColor', boxColor, ... 
                       'LineWidth', 1);
 
     % Release the axes hold
@@ -264,7 +297,7 @@ if ishandle(liveFig)
 end
 
 % Remove subfolder from path
-rmpath(strcfFolder); 
+rmpath(strcfFolder);
 
 % Print end message
 disp('Webcam stopped and resources released.');

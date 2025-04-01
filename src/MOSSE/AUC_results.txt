@@ -1,8 +1,2 @@
 AUC Results for Each Dataset:
 
-Dataset Basketball: AUC = 0.0913
-Dataset Biker: AUC = 0.0502
-Dataset Bird1: AUC = 0.2024
-Dataset Bird2: AUC = 0.1056
-Dataset BlurBody: AUC = 0.5042
-Dataset BlurCar1: AUC = 0.0419

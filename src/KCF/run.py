@@ -4,6 +4,13 @@ import cv2
 import math
 import numpy as np
 from kcf import Tracker  # Make sure that the Tracker class from your KCF module is correctly imported
+import sys
+import os
+
+
+def stop_script():
+    print("Stop signal received.")
+    sys.exit()
 
 def parse_groundtruth(gt_file):
     """

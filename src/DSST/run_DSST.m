@@ -1,5 +1,5 @@
-function run()
-    config = fileread("../../config.json"); 
+function run_DSST()
+    config = fileread("../config.json"); 
     config = jsondecode(config);
     datapath = config.datafile_path;%Read the config file to access datasets
 

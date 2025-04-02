@@ -10,7 +10,7 @@
 - Henry Pak
 - Santam Bhattacharya
 
-**[Final Report](documentation/final_report/report.pdf)**
+**[Final Report](documentation/final_report/Report_IEEE.pdf)**
 
 **[Live Demo Script](src/live_webcam_capture.m)**
 

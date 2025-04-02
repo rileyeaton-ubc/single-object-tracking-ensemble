@@ -1,4 +1,8 @@
-# Team 7 Progress Journal - Team Meeting Notes
+# Team 5 Progress Journal - Team Meeting Notes
+
+- Riley Eaton
+- Aidan Elliott
+- Jerry Fan
 
 ## Meeting 1 - January 20th
 

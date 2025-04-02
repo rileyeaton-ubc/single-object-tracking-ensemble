@@ -1,0 +1,282 @@
+<!DOCTYPE html><html><head>
+      <title>progress_journal</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\Riley\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.18\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="team-7-progress-journal---team-meeting-notes">Team 7 Progress Journal - Team Meeting Notes </h1>
+<h2 id="meeting-1---january-20th">Meeting 1 - January 20th </h2>
+<h4 id="discussion-points">Discussion Points </h4>
+<ul>
+<li>We will firstly work towards the literature review from part 1 of the project</li>
+<li>We have 4 weeks of work until this is due</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must">For next week, each team member must: </h4>
+<ul>
+<li>Read 2 or more recent research paper on Single object tracking task, at least one of which should be using traditional computer vision methods (that means it is not using deep leaning approach)</li>
+<li>Prepare a quick report or summary of the research to discuss in next meeting
+<ul>
+<li>Each team member should have a good understanding of the foundations of their papers, so that we can share with each other to get a better understanding of single object tracking techniques</li>
+</ul>
+</li>
+<li>Learn about pytorch if they do not have previous background knowledge</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should">In next week's meeting, we should: </h4>
+<ul>
+<li>Share our findings</li>
+<li>Aim to hone our literature review efforts into the papers that will help us define our problem statement for part 2 of the project</li>
+<li>Put together a Kanban or progress board where we can track to-dos. This will help with the development in the repo for part 2</li>
+</ul>
+<h2 id="meeting-2---january-27th">Meeting 2 - January 27th </h2>
+<h4 id="discussion-points-1">Discussion Points </h4>
+<ul>
+<li>Literature review is due in 3 weeks</li>
+<li>Discussion on our research papers:
+<ul>
+<li>There are many SOT techniques still being researched to address issues with variations in occlusion, lighting (poor conditions or rapid changes) scale, pose, and deformations.</li>
+<li>Many traditional correlation filters have been used to address these issues, yet they still fall short in many scenarios
+<ul>
+<li>We should to try to borrow various different advancements that build upon this technique to build our own for a specific task</li>
+<li>Which task will we focus on?</li>
+</ul>
+</li>
+<li>Emerging deep learning models can address these challenges and more:
+<ul>
+<li>We should aim to reduce computation complexity of the model to increase efficiency so that it can be used on-device in more applications</li>
+<li>We could build a pipeline to combine traditional methods (e.g. correlation filters) with these newer learning methods. Is this still considered a traditional method to prof?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-1">For next week, each team member must: </h4>
+<ul>
+<li>Continue researching your paper more in depth, and bring a technical breakdown of one or two models/approaches to our meeting
+<ul>
+<li>Prioritize papers with available source code, so that we can be prepared for implementation next week</li>
+</ul>
+</li>
+<li>Describe the current issues in SOT (Single Object Tracking) that you have seen in your papers using a couple sentences</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-1">In next week's meeting, we should: </h4>
+<ul>
+<li>
+<p>Create a single problem statement using each of our individual parts</p>
+</li>
+<li>
+<p>Try to replicate at least something from one paper using cited source code based on our new technical understanding</p>
+</li>
+<li>
+<p>Build a Kanban board AND create to-do's that will keep us on track for the literature review</p>
+<ul>
+<li>Implementation</li>
+<li>Consolidating findings</li>
+<li>Pros and Cons for each paper</li>
+</ul>
+</li>
+</ul>
+<h2 id="meeting-3---february-3rd">Meeting 3 - February 3rd </h2>
+<h4 id="discussion-points-2">Discussion Points </h4>
+<ul>
+<li>We have 2 meetings until the literature review is due
+<ul>
+<li>We need to focus our efforts towards the specific requirements for it</li>
+</ul>
+</li>
+<li>There are many different computer vision models being worked on currently for single object tracking, and through our research we have found different methods are most useful in specific scenarios. Because of this, we have determined we will work towards creating an ensemble model using the top picks from our research thus far.
+<ul>
+<li>Ensemble models see success in other applications of ML, so we see no reason why they wouldn't be effective in this case</li>
+<li>We will select 5 Correlation Filter-Based SoTA Models (1 per group member), and begin our effort to construct an ensemble model based on these
+<ul>
+<li>We have compiled a list of these models using our research thus far</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-2">For next week, each team member must: </h4>
+<ul>
+<li>Select a Correlation Filter-Based SoTA Model (list in Discord) and find a paper introducing or utilizing it which <strong>includes source code</strong>
+<ul>
+<li><strong>Riley</strong>: SRDCF (Spatially Regularized Discriminative Correlation Filter)</li>
+<li><strong>Wanju</strong>: KCF (Kernelized Correlation Filter)</li>
+<li><strong>Henry</strong>: CSK?</li>
+<li><strong>Dichen</strong>: MOSSE</li>
+<li><strong>Santam</strong>: ?</li>
+</ul>
+</li>
+<li>Understand the nuances of your selected model. Then, put together a list of scenarios where it performs best, as well as anything it struggles with. This will help us plan and construct the ensemble model.</li>
+<li>Attempt to reproduce the results of a paper on your model using the provided source code.</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-2">In next week's meeting, we should: </h4>
+<ul>
+<li>Create a single problem statement, using the problems that our separate models aim to solve</li>
+<li>Begin planning how the ensemble model will be structured based on the advantages and disadvantages of each model. Will we use all 5 or cut it down to 3 or 4 models?</li>
+<li>Break the literature review down into pieces that we can each individually contribute to
+<ul>
+<li>Then, create to-do's for each member to keep us on track</li>
+</ul>
+</li>
+</ul>
+<h2 id="meeting-4---february-14th">Meeting 4 - February 14th </h2>
+<h4 id="discussion-points-3">Discussion Points </h4>
+<ul>
+<li>Literature review is due in a week</li>
+<li>Consolidated findings of each group member and each SOT method</li>
+<li>Troubleshooting source code setup issues, making progress</li>
+<li>Literature Review Progress:
+<ul>
+<li>We have enough information and sources to effectively start working on completing the upcoming literature review deliverable</li>
+</ul>
+</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-3">For next week, each team member must: </h4>
+<ul>
+<li>Continue drafting and organizing the literature review</li>
+<li>Finalize the problem statement</li>
+<li>Ensure at least one source code implementation runs properly</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-3">In next week's meeting, we should: </h4>
+<ul>
+<li>Ensure the team is on track to meet the deadline for the literature review submission</li>
+<li>Go over source code implementation and try to get at least one of them working</li>
+<li>Decide which image dataset the team is going to use for evaluating models, to ensure consistency</li>
+</ul>
+<h2 id="meeting-5---february-21st">Meeting 5 - February 21st </h2>
+<h4 id="discussion-points-4">Discussion Points </h4>
+<ul>
+<li>Successfully ran one team member's code implementation</li>
+<li>Selected the OTB2015 and LaSOT datasets for initial benchmarking</li>
+<li>Worked on completing the literature review report</li>
+<li>Assigned tasks to group members for completing the upcoming assignment</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-4">For next week, each team member must: </h4>
+<ul>
+<li>Until the deadline(Monday), finalize report sections and ensure a cohesive write up</li>
+<li>Run additional tests with the chosen dataset</li>
+<li>Check citations and references in the document</li>
+<li>Add LaTex formatting to achieve a visually pleasing document</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-4">In next week's meeting, we should: </h4>
+<ul>
+<li>Focus on getting more team member's models up and running</li>
+<li>Run experiments on the chosen dataset and gather performance metrics to compare efficiency across selected methods</li>
+<li>Define goals for the next phase of development</li>
+</ul>
+<h2 id="meeting-6---february-28th">Meeting 6 - February 28th </h2>
+<h4 id="discussion-points-5">Discussion Points </h4>
+<ul>
+<li>Now that we have submitted our report, we need to start getting more code working</li>
+<li>We will be meeting with the TA today, lets make sure we know what to discuss. Have any questions ready</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-5">For next week, each team member must: </h4>
+<ul>
+<li>Complete the replication of their model</li>
+<li>Upload their working code to their respective sub-folder in the repository under <code>src/MODEL_NAME</code></li>
+<li>Work on getting their model benchmarking on OTB2015</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-5">In next week's meeting, we should: </h4>
+<ul>
+<li>Discuss any problems we have run into when replicating</li>
+<li>Break down the problem of how to ensemble all the models together</li>
+</ul>
+<h2 id="meeting-7---march-6th">Meeting 7 - March 6th </h2>
+<h4 id="discussion-points-6">Discussion Points </h4>
+<ul>
+<li>Focused on replicating individual tracking models</li>
+<li>Discussed model integration and file formatting for ensemble testing</li>
+<li>Decide on file naming convention and folder structure for organizing the repository</li>
+<li>Begin work on a tradional SOT model to fulfill project requirements</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-6">For next week, each team member must: </h4>
+<ul>
+<li>Push clean, working code to the repository</li>
+<li>Convert outputs to standardized format</li>
+<li>Benchmark their model on OTB2015 sequences</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-6">In next week's meeting, we should: </h4>
+<ul>
+<li>Finalize the format for tracker outputs</li>
+<li>Begin writing wrapper for ensemble logic</li>
+</ul>
+<h2 id="meeting-8---march-13th">Meeting 8 - March 13th </h2>
+<h4 id="discussion-points-7">Discussion Points </h4>
+<ul>
+<li>Initial benchmarks from OTB2015 sequences collected</li>
+<li>Started working on a MATLAB wrapper to unify outputs across trackers</li>
+<li>Identified differences in bounding box formats and output styles between models</li>
+<li>Discussed model integration and file formatting for ensemble testing</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-7">For next week, each team member must: </h4>
+<ul>
+<li>Validate that their tracker outputs are aligned and compatible with ensemble wrapper</li>
+<li>Begin visualizing tracker overlap</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-7">In next week's meeting, we should: </h4>
+<ul>
+<li>Troubleshoot any alignment or output issues</li>
+</ul>
+<h2 id="meeting-9---march-20th">Meeting 9 - March 20th </h2>
+<h4 id="discussion-points-8">Discussion Points </h4>
+<ul>
+<li>Added visualizations to display all individual bounding boxes and the ensemble result</li>
+<li>KCF (Python/OpenCV) and STRCF (C/MEX + OpenCV) running; DSST and MOSSE working in MATLAB but still being debugged</li>
+<li>Established Benchmarks and Accuracy metrics across different models</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-8">For next week, each team member must: </h4>
+<ul>
+<li>Start preparing figures and tables for final report</li>
+<li>Look into developing a solution for the live demonstration</li>
+<li>Begin working on the final project deliverables, including the presentation and the final report</li>
+</ul>
+<h4 id="in-next-weeks-meeting-we-should-8">In next week's meeting, we should: </h4>
+<ul>
+<li>Determine a strategy for completing the project deliverables and handing in finished code</li>
+</ul>
+<h2 id="meeting-10---march-27th">Meeting 10 - March 27th </h2>
+<h4 id="discussion-points-9">Discussion Points </h4>
+<ul>
+<li>System more stable now on difficult sequences</li>
+<li>Drafted content for Final Report</li>
+<li>STRCF successfully tested on live webcam input</li>
+</ul>
+<h4 id="for-next-week-each-team-member-must-9">For next week, each team member must: </h4>
+<ul>
+<li>Finish system integrations and consolidate different SOT models</li>
+<li>Finalize model performance plots and benchmark tables</li>
+<li>Polish code for submission (remove test scripts, comment code)</li>
+<li>Finalize all documentation and assign final tasks before submission</li>
+<li>Plan the presentation and live demonstration</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

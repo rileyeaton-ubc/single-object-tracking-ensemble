@@ -17,3 +17,7 @@
 **[Weekly Progress Journal](documentation/progress_journal.md)**
 
 **[Literature Review](documentation/part1/literature_review.pdf)**
+
+Below is a diagram of how the live demo operates:
+
+![Live Demo](documentation/demo_diagram_background.png)

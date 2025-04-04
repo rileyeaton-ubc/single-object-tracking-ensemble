@@ -14,7 +14,7 @@ video_path = [base_path '/' video];
 [seq, gt_boxes] = load_video_info(video_path);
 
 % Run STRCF
-results = run_STRCF(seq);
+results = run_STRCF_demo(seq);
 %results = run_DeepSTRCF(seq);
 
 pd_boxes = results.res;

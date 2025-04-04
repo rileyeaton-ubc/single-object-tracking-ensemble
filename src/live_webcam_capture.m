@@ -25,8 +25,8 @@ desiredFramerate = 10;
 
 % Time (in seconds) for the model to run for, and the time it initially
 % waits to start the tracking using the initial target area
-delayTime = 5;
-modelRunTime = 30;
+delayTime = 8;
+modelRunTime = 20;
 
 % The percent of the middle of the webcam image that will be filled by the
 % initial target area square

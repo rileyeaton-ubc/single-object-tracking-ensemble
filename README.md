@@ -34,8 +34,9 @@ In order to run the live demo, you will need to first properly install STRCF in 
 2. Open the /src/STRCF folder in MATLAB
 3. Run `git submodule init`
 4. Run `git submodule update`
-5. Run the install script using `install`
-6. Run the test tracker with `demo_STRCF`
+5. Run `mex -setup c++`
+6. Run the install script using `install`
+7. Run the test tracker with `demo_STRCF`
 
 Once you have completed these steps, your repository will be ready to run the live demo! You just need to run the script at [`/src/live_webcam_capture.m`](/src/live_webcam_capture.m).
 

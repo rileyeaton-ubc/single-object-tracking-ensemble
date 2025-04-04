@@ -7,7 +7,7 @@
 % ---------------------------- CONFIGURATION ------------------------------
 % Clear workspace and close existing figures
 clearvars;
-% close all;
+close all;
 
 % Variables for saving frame images
 targetFolderName = 'live_frames';   % Name of the subfolder to save frame images to    
@@ -158,35 +158,26 @@ while keepRunning && ishandle(liveFig)
             case 2
                 disp('Using KCF')
             % STRCF
-            case 3 % STRCF
-                % Pass the persistent status INTO live_STRCF
+            case 3
+                % Pass the persistent lost status to live script, along with previous predicted box, and the paths to the last N frames
                 [tempResultBox, persistent_lost_status, latest_peak_score] = live_STRCF(resultBox, lastNFramePaths, persistent_lost_status);
-                % NOTE: We modified live_STRCF to return the new status and score
             
-                % --- Use the persistent_lost_status to set box color ---
+                % Use the lost status to set box color
                 if persistent_lost_status
-                    boxColor = lostColor; % Use red if lost
+                    boxColor = lostColor; % red if lost
                 else
-                    boxColor = detectedColor; % Use green if tracking/re-acquired
+                    boxColor = detectedColor; % green if tracked
                 end
-                % --- Update resultBox if tracking ---
-                % Only update the reference box if the tracker is NOT lost
+                
+                % Only update reference box if the tracker is not lost
                 if ~persistent_lost_status && ~isempty(tempResultBox)
-                     % Assuming tempResultBox holds the result for the *last* frame of the batch
-                     % Check the dimensions/structure of tempResultBox as returned
-                     if size(tempResultBox,1) >= 1
-                         resultBox = tempResultBox(end,:);
-                     else
-                         warning('STRCF returned an empty or invalid result box.');
-                         % Decide how to handle this - maybe mark as lost?
-                         % persistent_lost_status = true;
-                         % boxColor = lostColor;
-                     end
+                    resultBox = tempResultBox(end,:);
                 elseif isempty(tempResultBox)
-                     warning('STRCF returned empty result.');
-                     % persistent_lost_status = true; % Consider marking as lost if empty
-                     % boxColor = lostColor;
-                end % else: if lost, resultBox retains its previous value
+                    % If the result box is empty, print a warning and set the status to lost
+                    warning('STRCF returned empty result.');
+                    persistent_lost_status = true;
+                    boxColor = lostColor;
+                end
             % C-COT
             case 4
                 disp('Using C-COT')
@@ -198,9 +189,6 @@ while keepRunning && ishandle(liveFig)
         end
         
         % If the returned result box contains results, update the current box
-        if not(isempty(tempResultBox))
-            resultBox = tempResultBox;
-        end
 
         % Add one frame to the active model frame counter, and check the
         % time elapsed since the model has started running
@@ -259,7 +247,7 @@ while keepRunning && ishandle(liveFig)
     % Draw the rectangle and store its value
     currPredictionRect = rectangle(currentAxes, ...
                       'Position', resultBox, ...
-                      'EdgeColor', boxColor, ... 
+                      'EdgeColor', boxColor, ...
                       'LineWidth', 1);
 
     % Release the axes hold

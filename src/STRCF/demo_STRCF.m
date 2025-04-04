@@ -7,14 +7,14 @@ setup_paths();
 
 %  Load video information
 base_path  =  './sequences';
-%video  = choose_video(base_path);
+% video  = choose_video(base_path);
 video = 'Human3';
 
 video_path = [base_path '/' video];
 [seq, gt_boxes] = load_video_info(video_path);
 
 % Run STRCF
-results = run_STRCF(seq);
+results = run_STRCF_demo(seq);
 %results = run_DeepSTRCF(seq);
 
 pd_boxes = results.res;

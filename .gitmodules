@@ -1,0 +1,3 @@
+[submodule "src/STRCF"]
+	path = src/STRCF
+	url = https://github.com/lifeng9472/STRCF.git

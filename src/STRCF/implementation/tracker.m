@@ -49,7 +49,7 @@ admm_max_iterations = params.max_iterations;
 init_penalty_factor = params.init_penalty_factor;
 max_penalty_factor = params.max_penalty_factor;
 penalty_scale_step = params.penalty_scale_step;
-temporal_regularization_factor = params.temporal_regularization_factor; 
+temporal_regularization_factor = params.temporal_regularization_factor;
 
 init_target_sz = target_sz;
 
@@ -136,7 +136,7 @@ for i = 1:num_feature_blocks
     cg           = circshift(-floor((sz(2)-1)/2):ceil((sz(2)-1)/2), [0 -floor((sz(2)-1)/2)]);
     [rs, cs]     = ndgrid(rg,cg);
     y            = exp(-0.5 * (((rs.^2 + cs.^2) / output_sigma^2)));
-    yf{i}           = fft2(y); 
+    yf{i}           = fft2(y);
 end
 
 % Compute the cosine windows
@@ -146,10 +146,10 @@ cos_window = cellfun(@(sz) hann(sz(1))*hann(sz(2))', feature_sz_cell, 'uniformou
 reg_window = cell(num_feature_blocks, 1);
 for i = 1:num_feature_blocks
     reg_scale = floor(base_target_sz/params.feature_downsample_ratio(i));
-    use_sz = filter_sz_cell{i};    
+    use_sz = filter_sz_cell{i};
     reg_window{i} = ones(use_sz) * params.reg_window_max;
     range = zeros(numel(reg_scale), 2);
-    
+
     % determine the target center and range in the regularization windows
     for j = 1:numel(reg_scale)
         range(j,:) = [0, reg_scale(j) - 1] - floor(reg_scale(j) / 2);
@@ -157,7 +157,7 @@ for i = 1:num_feature_blocks
     center = floor((use_sz + 1)/ 2) + mod(use_sz + 1,2);
     range_h = (center(1)+ range(1,1)) : (center(1) + range(1,2));
     range_w = (center(2)+ range(2,1)) : (center(2) + range(2,2));
-    
+
     reg_window{i}(range_h, range_w) = params.reg_window_min;
 end
 
@@ -201,30 +201,40 @@ while true
     end
 
     tic();
-    
+    % Initialize status flags for current frame
+    current_frame_lost = false; % Assume not lost initially for this frame
+    current_frame_peak_score = NaN; % Initialize peak score for this frame
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Target localization step
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    % Do not estimate translation and scaling on the first frame, since we 
+
+    % Do not estimate translation and scaling on the first frame, since we
     % just want to initialize the tracker there
     if seq.frame > 1
         old_pos = inf(size(pos));
         iter = 1;
-        
+
+        % Check if tracker was lost entering this frame
+        was_lost = isfield(params, 'is_currently_lost') && params.is_currently_lost;
+        if was_lost
+            % fprintf('--- Frame %d: Tracker starting in LOST state ---\n', seq.frame);
+            % Later, implement search area widening here
+        end
+
         %translation search
         while iter <= params.refinement_iterations && any(old_pos ~= pos)
             % Extract features at multiple resolutions
             sample_pos = round(pos);
             sample_scale = currentScaleFactor*scaleFactors;
             xt = extract_features(im, sample_pos, sample_scale, features, global_fparams, feature_extract_info);
-                                    
+
             % Do windowing of features
             xtw = cellfun(@(feat_map, cos_window) bsxfun(@times, feat_map, cos_window), xt, cos_window, 'uniformoutput', false);
-            
+
             % Compute the fourier series
             xtf = cellfun(@fft2, xtw, 'uniformoutput', false);
-                        
+
             % Compute convolution for each feature block in the Fourier domain
             % and the sum over all blocks.
             scores_fs_feat{k1} = gather(sum(bsxfun(@times, conj(cf_f{k1}), xtf{k1}), 3));
@@ -234,128 +244,168 @@ while true
                 scores_fs_feat{k} = resizeDFT2(scores_fs_feat{k}, output_sz);
                 scores_fs_sum = scores_fs_sum +  scores_fs_feat{k};
             end
-             
+
             % Also sum over all feature blocks.
             % Gives the fourier coefficients of the convolution response.
             scores_fs = permute(gather(scores_fs_sum), [1 2 4 3]);
-            
+
             responsef_padded = resizeDFT2(scores_fs, output_sz);
             response = ifft2(responsef_padded, 'symmetric');
+
+            % Calculate peak score and determine lost status
+            peak_score = max(response(:));
+            current_frame_peak_score = peak_score;
+            current_frame_lost = true; % Assume lost
+
+            % If tracker was lost check if re-acquired
+            if was_lost
+                if peak_score >= params.redetection_threshold
+                    % Toggle lost status
+                    current_frame_lost = false; 
+                    fprintf('Frame %d: target RE-ACQUIRED (peak score: %.4f >= re-detection threshold: %.4f)\n', seq.frame, peak_score, params.redetection_threshold);
+                else
+                    % Still lost
+                end
+            else
+                % Tracker was not lost, so check for normal loss
+                if peak_score >= params.confidence_threshold
+                    % Still tracking
+                    current_frame_lost = false; 
+                else
+                    % Tracking lost
+                    fprintf('Frame %d: target LOST (peak score: %.4f < confidence threshold: %.4f)\n', seq.frame, peak_score, params.confidence_threshold);
+                end
+            end
+
             [disp_row, disp_col, sind] = resp_newton(response, responsef_padded, newton_iterations, ky, kx, output_sz);
-                        
+
             % Compute the translation vector in pixel-coordinates and round
             % to the closest integer pixel.
-            translation_vec = [disp_row, disp_col] .* (img_support_sz./output_sz) * currentScaleFactor * scaleFactors(sind);            
+            translation_vec = [disp_row, disp_col] .* (img_support_sz./output_sz) * currentScaleFactor * scaleFactors(sind);
             scale_change_factor = scaleFactors(sind);
-            
+
             % update position
             old_pos = pos;
             pos = sample_pos + translation_vec;
-            
+
             if params.clamp_position
                 pos = max([1 1], min([size(im,1) size(im,2)], pos));
             end
-                        
+
             % Update the scale
             currentScaleFactor = currentScaleFactor * scale_change_factor;
-            
+
             % Adjust to make sure we are not to large or to small
             if currentScaleFactor < min_scale_factor
                 currentScaleFactor = min_scale_factor;
             elseif currentScaleFactor > max_scale_factor
                 currentScaleFactor = max_scale_factor;
             end
-            
+
             iter = iter + 1;
-        end
+        end 
+    else 
+        % Handle first frame
+        % Initialize default high confidence and not lost on first frame
+        current_frame_peak_score = 1.0;
+        current_frame_lost = false;
+        was_lost = false;
     end
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Model update step
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    % extract image region for training sample
-    sample_pos = round(pos);
-    xl = extract_features(im, sample_pos, currentScaleFactor, features, global_fparams, feature_extract_info);
+    % Only update the model if the target is not lost
+    if ~current_frame_lost
 
-    % do windowing of features
-    xlw = cellfun(@(feat_map, cos_window) bsxfun(@times, feat_map, cos_window), xl, cos_window, 'uniformoutput', false);
+        % extract image region for training sample
+        sample_pos = round(pos);
+        xl = extract_features(im, sample_pos, currentScaleFactor, features, global_fparams, feature_extract_info);
 
-    % compute the fourier series
-    xlf = cellfun(@fft2, xlw, 'uniformoutput', false);
+        % do windowing of features
+        xlw = cellfun(@(feat_map, cos_window) bsxfun(@times, feat_map, cos_window), xl, cos_window, 'uniformoutput', false);
+
+        % compute the fourier series
+        xlf = cellfun(@fft2, xlw, 'uniformoutput', false);
 
     % train the CF model for each feature
-    for k = 1: numel(xlf)
-        model_xf = xlf{k};
+        for k = 1: numel(xlf)
+            model_xf = xlf{k};
 
-        if (seq.frame == 1)
-            f_pre_f{k} = zeros(size(model_xf));
-            mu = 0;
-        else
-            mu = temporal_regularization_factor(k);
-        end
-        
-        % intialize the variables
-        f_f = single(zeros(size(model_xf)));
-        g_f = f_f;
-        h_f = f_f;
-        gamma  = init_penalty_factor(k);
-        gamma_max = max_penalty_factor(k);
-        gamma_scale_step = penalty_scale_step(k);
-        
-        % use the GPU mode
-        if params.use_gpu
-            model_xf = gpuArray(model_xf);
-            f_f = gpuArray(f_f);
-            f_pre_f{k} = gpuArray(f_pre_f{k});
-            g_f = gpuArray(g_f);
-            h_f = gpuArray(h_f);
-            reg_window{k} = gpuArray(reg_window{k});
-            yf{k} = gpuArray(yf{k});
-        end
+            if (seq.frame == 1)
+                f_pre_f{k} = zeros(size(model_xf), 'like', model_xf);
+                mu = 0;
+            else
+                mu = temporal_regularization_factor(k);
+            end
 
-        % pre-compute the variables
-        T = prod(output_sz);
-        S_xx = sum(conj(model_xf) .* model_xf, 3);
-        Sf_pre_f = sum(conj(model_xf) .* f_pre_f{k}, 3);
-        Sfx_pre_f = bsxfun(@times, model_xf, Sf_pre_f);
+            % intialize the variables
+            f_f = single(zeros(size(model_xf), 'like', model_xf));
+            g_f = f_f;
+            h_f = f_f;
+            gamma  = init_penalty_factor(k);
+            gamma_max = max_penalty_factor(k);
+            gamma_scale_step = penalty_scale_step(k);
 
-        % solve via ADMM algorithm
-        iter = 1;
-        while (iter <= admm_max_iterations)
+            % use the GPU mode
+            if params.use_gpu
+                model_xf = gpuArray(model_xf);
+                f_f = gpuArray(f_f);
+                f_pre_f{k} = gpuArray(f_pre_f{k});
+                g_f = gpuArray(g_f);
+                h_f = gpuArray(h_f);
+                reg_window{k} = gpuArray(reg_window{k});
+                yf{k} = gpuArray(yf{k});
+            end
 
-            % subproblem f
-            B = S_xx + T * (gamma + mu);
-            Sgx_f = sum(conj(model_xf) .* g_f, 3);
-            Shx_f = sum(conj(model_xf) .* h_f, 3);
- 
-            f_f = ((1/(T*(gamma + mu)) * bsxfun(@times,  yf{k}, model_xf)) - ((1/(gamma + mu)) * h_f) +(gamma/(gamma + mu)) * g_f) + (mu/(gamma + mu)) * f_pre_f{k} - ...
-                bsxfun(@rdivide,(1/(T*(gamma + mu)) * bsxfun(@times, model_xf, (S_xx .*  yf{k})) + (mu/(gamma + mu)) * Sfx_pre_f - ...
-                (1/(gamma + mu))* (bsxfun(@times, model_xf, Shx_f)) +(gamma/(gamma + mu))* (bsxfun(@times, model_xf, Sgx_f))), B);
-
-            %   subproblem g
-            g_f = fft2(argmin_g(reg_window{k}, gamma, real(ifft2(gamma * f_f+ h_f)), g_f));
-
-            %   update h
-            h_f = h_f + (gamma * (f_f - g_f));
-
-            %   update gamma
-            gamma = min(gamma_scale_step * gamma, gamma_max);
-            
-            iter = iter+1;
-        end
-        
-        % save the trained filters
-        f_pre_f{k} = f_f;
-        cf_f{k} = f_f;
-    end  
-            
-    % Update the target size (only used for computing output box)
-    target_sz = base_target_sz * currentScaleFactor;
+            % pre-compute the variables
+            T = prod(filter_sz_cell{k});
+            S_xx = sum(conj(model_xf) .* model_xf, 3);
+            Sf_pre_f = sum(conj(model_xf) .* f_pre_f{k}, 3);
+            Sfx_pre_f = bsxfun(@times, model_xf, Sf_pre_f);
     
-    %save position and calculate FPS
-    tracking_result.center_pos = double(pos);
-    tracking_result.target_size = double(target_sz);
+            % solve via ADMM algorithm
+            iter = 1;
+            while (iter <= admm_max_iterations)
+    
+                % subproblem f
+                B = S_xx + T * (gamma + mu);
+                Sgx_f = sum(conj(model_xf) .* g_f, 3);
+                Shx_f = sum(conj(model_xf) .* h_f, 3);
+     
+                f_f = ((1/(T*(gamma + mu)) * bsxfun(@times,  yf{k}, model_xf)) - ((1/(gamma + mu)) * h_f) +(gamma/(gamma + mu)) * g_f) + (mu/(gamma + mu)) * f_pre_f{k} - ...
+                    bsxfun(@rdivide,(1/(T*(gamma + mu)) * bsxfun(@times, model_xf, (S_xx .*  yf{k})) + (mu/(gamma + mu)) * Sfx_pre_f - ...
+                    (1/(gamma + mu))* (bsxfun(@times, model_xf, Shx_f)) +(gamma/(gamma + mu))* (bsxfun(@times, model_xf, Sgx_f))), B);
+    
+                %   subproblem g
+                g_f = fft2(argmin_g(reg_window{k}, gamma, real(ifft2(gamma * f_f+ h_f)), g_f));
+    
+                %   update h
+                h_f = h_f + (gamma * (f_f - g_f));
+    
+                %   update gamma
+                gamma = min(gamma_scale_step * gamma, gamma_max);
+                
+                iter = iter+1;
+            end
+            
+            % save the trained filters
+            f_pre_f{k} = f_f;
+            cf_f{k} = f_f;
+        end  
+                
+        % Update the target size (only used for computing output box)
+        target_sz = base_target_sz * currentScaleFactor;
+        
+        %save position and calculate FPS
+        tracking_result.center_pos = double(pos);
+        tracking_result.target_size = double(target_sz);
+    end
+    % Use determined score and lost flag
+    tracking_result.peak_score = current_frame_peak_score; 
+    tracking_result.lost = current_frame_lost;
+    
     seq = report_tracking_result(seq, tracking_result);
     
     seq.time = seq.time + toc();
@@ -374,7 +424,13 @@ while true
         
         imagesc(im_to_show);
         hold on;
-        rectangle('Position',rect_position_vis, 'EdgeColor','g', 'LineWidth',2);
+        % Adjust box color based on lost status
+        if current_frame_lost
+            box_edge_color = 'r'; % Red if lost
+        else
+            box_edge_color = 'g'; % Green if tracking
+        end
+        rectangle('Position',rect_position_vis, 'EdgeColor',box_edge_color, 'LineWidth',2);
         text(10, 10, [int2str(seq.frame) '/'  int2str(size(seq.image_files, 1))], 'color', [0 1 1]);
         hold off;
         axis off;axis image;set(gca, 'Units', 'normalized', 'Position', [0 0 1 1])

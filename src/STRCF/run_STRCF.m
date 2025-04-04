@@ -55,11 +55,17 @@ params.number_of_scales = 5;            % Number of scales to run the detector
 params.scale_step = 1.01;               % The scale factor
 
 % Visualization
+% Set to 1 for debug
 params.visualization = 0;               % Visualiza tracking and detection scores
 
 % GPU
 params.use_gpu = false;                 % Enable GPU or not
 params.gpu_id = [];                     % Set the GPU id, or leave empty to use default
+
+% Merge incoming state from seq structure if it exists
+if isfield(seq, 'params') && isfield(seq.params, 'is_currently_lost')
+    params.is_currently_lost = seq.params.is_currently_lost;
+end
 
 % Initialize
 params.seq = seq;

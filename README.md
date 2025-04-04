@@ -14,6 +14,8 @@
 
 **[Final Report](documentation/final_report/Report_IEEE.pdf)**
 
+**[Presentation Slides](https://docs.google.com/presentation/d/1ZceUGqDvtx4sir9K-8o6joOVL6VcjRGkQioI_aWd4tI/edit?usp=sharing)**
+
 **[Live Demo Script](src/live_webcam_capture.m)**
 
 **[Weekly Progress Journal](documentation/progress_journal.md)**
